@@ -1,0 +1,31 @@
+.messages-page-container
+{
+    padding: 2rem 6rem;
+    min-height: calc(100vh - 107.23px);
+    grid-column: 2/3;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--background-color);
+}
+
+@media only screen and (max-width:1335px){
+    .messages-page-container
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .messages-suggestion-container
+    {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:1015px){
+    .messages-page-container
+    {
+        min-height: calc(100vh - 157.23px);
+    }
+}

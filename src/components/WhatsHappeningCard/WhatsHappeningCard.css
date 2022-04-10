@@ -1,0 +1,39 @@
+.whats-happening-card
+{
+    max-height: fit-content;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.whats-happening-card:hover
+{
+    background-color: var(--bluish-white);
+}
+
+.whats-happening-details
+{
+    display: flex;
+    justify-content: space-between;
+    max-height: 8.6rem;
+}
+
+.whats-happening-details p 
+{
+    margin: 0;
+    width: 17rem;
+    max-height: 8.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 13px;
+}
+
+.whats-happening-img
+{
+    width: 8.1rem;
+    height: 8.1rem;
+    object-fit: cover;
+}
