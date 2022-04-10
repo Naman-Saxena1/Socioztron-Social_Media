@@ -19,7 +19,7 @@ function Signup()
     {
         event.preventDefault();
         axios.post(
-            "https://bookztron.herokuapp.com/api/signup",
+            "https://socioztron.herokuapp.com/api/signup",
             {
                 newUserName: `${newUserName}`,
                 newUserEmail: `${newUserEmail}`,
@@ -30,7 +30,7 @@ function Signup()
             if(res.data.status==='ok')
             {
                 //User created successfully, navigate to Login Page
-                showToast("success","","New user created successfully")
+                showToast("success","New user created successfully")
                 navigate('/login')
             }
             else
@@ -39,7 +39,7 @@ function Signup()
             }
         })
         .catch(err=>{
-            showToast("error","","Error creating new user. Please try again")
+            showToast("error","Error creating new user. Please try again")
         })
     }
 

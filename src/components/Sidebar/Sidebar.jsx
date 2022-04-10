@@ -37,8 +37,8 @@ function Sidebar()
                     <p className="sidebar-options-text">Messages</p>
                 </div>
             </Link>
-            <Link to="/bookmark">
-                <div className={urlPath==="/bookmark"?`sidebar-options active-sidebar-option`:`sidebar-options`}>
+            <Link to="/bookmarks">
+                <div className={urlPath==="/bookmarks"?`sidebar-options active-sidebar-option`:`sidebar-options`}>
                     <MdOutlineBookmarkBorder className="sidebar-options-icons" style={{fontSize: "20px"}}/>
                     <p className="sidebar-options-text">Bookmarks</p>
                 </div>

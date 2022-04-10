@@ -36,7 +36,7 @@ function Navbar() {
         localStorage.removeItem('socioztron-user-token')
         setUserLoggedIn(false)
         localStorage.clear()
-        showToast("success","","Logged out successfully")
+        showToast("success","Logged out successfully")
     }
     
     return (

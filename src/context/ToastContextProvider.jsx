@@ -7,34 +7,30 @@ let ToastContextProvider = ({children}) => {
 
   let toastProperties = null;
 
-  const showToast = (typeOfToast, toastTitle, toastDescription) =>
+  const showToast = (typeOfToast, toastDescription) =>
   {
     switch(typeOfToast)
     {
       case "success" : toastProperties = {
         id : toastList.length+1,
-        title : toastTitle,
         description : toastDescription,
         backgroundColor : 'var(--onlinestatus-or-success)'
       }
       break;
       case "error" : toastProperties = {
         id : toastList.length+1,
-        title : toastTitle,
         description : toastDescription,
         backgroundColor : 'var(--red-color)'
       }
       break;
       case "warning" : toastProperties = {
         id : toastList.length+1,
-        title : toastTitle,
         description : toastDescription,
         backgroundColor : 'var(--awaystatus-or-warning)'
       }
       break;
       case "info" : toastProperties = {
         id : toastList.length+1,
-        title : toastTitle,
         description : toastDescription,
         backgroundColor : 'var(--sky-blue)'
       }

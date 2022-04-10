@@ -16,45 +16,13 @@ function Login()
     const [userEmail    , setUserEmail]    = useState('')
     const [userPassword , setUserPassword] = useState('')
 
-    useEffect(()=>{
-        const token=localStorage.getItem('socioztron-user-token')
-
-        if(token)
-        {
-            const user = jwt_decode(token)
-            if(!user)
-            {
-                localStorage.removeItem('socioztron-user-token')
-            }
-            else
-            {
-                (async function getUpdatedWishlistAndCart()
-                {
-                    let updatedUserInfo = await axios.get(
-                    "http://localhost:1337/api/user",
-                    {
-                        headers:
-                        {
-                        'x-access-token': localStorage.getItem('socioztron-user-token'),
-                        }
-                    })
-
-                    if(updatedUserInfo.data.status==="ok")
-                    {
-
-                    }
-                })()
-            }
-        }   
-    },[])
-
     const navigate = useNavigate()
 
     function loginUser(event)
     {
         event.preventDefault();
         axios.post(
-            "http://localhost:1337/api/login",
+            "https://socioztron.herokuapp.com/api/login",
             {
                 userEmail,
                 userPassword
@@ -65,9 +33,9 @@ function Login()
             if(res.data.user)
             {
                 localStorage.setItem('socioztron-user-token',res.data.user)
-                showToast("success","","Logged in successfully")
+                showToast("success","Logged in successfully")
                 setUserLoggedIn(true)
-                navigate('/home')
+                navigate('/')
             }
             else
             {
@@ -76,7 +44,7 @@ function Login()
 
         })
         .catch(err=>{
-            showToast("error","","Error logging in user. Please try again")
+            showToast("error","Error logging in user. Please try again")
         })
     }
 

@@ -35,7 +35,6 @@ function Toast({ position })
                          style={{backgroundColor : toast.backgroundColor}}
                     >
                         <div className="toast-content-container">
-                            <h3 className='toast-title'>{toast.title}</h3>
                             <p className='toast-description'>{toast.description}</p>
                         </div>
                         <button onClick={()=>deleteToast(toast.id)} className="toast-close-btn">X</button>

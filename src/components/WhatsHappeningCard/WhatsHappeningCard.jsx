@@ -6,7 +6,7 @@ function WhatsHappeningCard()
     return (
         <a 
             target="_blank" 
-            href="https://www.youtube.com/watch?v=k9pP6G-AAHw&list=PLOcuU2_JXLNNL2dmg1Y2389G-CSo1FYtW&index=3" 
+            href="https://www.youtube.com/watch?v=k9pP6G-AAHw" 
             rel="noreferrer"
         >
             <div className='whats-happening-card'>

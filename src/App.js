@@ -8,7 +8,9 @@ import {
   Login,
   Home,
   Explore,
-  Messages
+  Messages,
+  Bookmarks,
+  UserProfilePage
 } from './pages/index'
 import './App.css';
 
@@ -23,6 +25,8 @@ function App() {
           <Route path="/signup"         element={<Signup/>} />
           <Route path="/explore"        element={<Explore/>} />
           <Route path="/messages"       element={<Messages/>} />
+          <Route path="/bookmarks"      element={<Bookmarks/>} />
+          <Route path="/profile"        element={<UserProfilePage/>} />
         </Routes>
         <Toast position="bottom-right"/>
       </div>
