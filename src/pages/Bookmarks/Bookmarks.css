@@ -1,0 +1,31 @@
+.bookmarks-page-container
+{
+    padding: 2rem 6rem;
+    min-height: calc(100vh - 107.23px);
+    grid-column: 2/3;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--background-color);
+}
+
+@media only screen and (max-width:83.4375em){
+    .bookmarks-page-container
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .bookmarks-suggestion-container
+    {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:63.4375em){
+    .bookmarks-page-container
+    {
+        min-height: calc(100vh - 157.23px);
+    }
+}
