@@ -6,13 +6,13 @@
     position: fixed;
     top: 10.7rem;
     overflow-y: scroll;
-    padding: 3rem 3rem 3rem 3rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 1rem;
     color: black;
-    background-color: white;
+    background-color: var(--pure-white);
     box-sizing: border-box;
 }
 
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: white;
+    background-color: var(--pure-white);
 }
 
 .sidebar-options:hover
@@ -40,7 +40,7 @@
 
 .active-sidebar-option
 {
-    color: white;
+    color: var(--pure-white);
     background-color: var(--sky-blue);
 }
 
@@ -52,6 +52,7 @@
 
 .sidebar-options-icons
 {
+    font-size: 20px;
     margin-right: 2rem;
 }
 

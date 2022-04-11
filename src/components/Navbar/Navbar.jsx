@@ -5,7 +5,7 @@ import { useUserLogin, useToast } from "../../context/index"
 import { 
     AiOutlineHome,
     AiOutlineBell 
-} from "react-icons/ai"
+} from "../../assets/react-icons"
 import './Navbar.css'
 
 function Navbar() {
