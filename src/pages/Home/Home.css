@@ -66,7 +66,7 @@
     background-color: white;
 }
 
-@media only screen and (max-width:1335px){
+@media only screen and (max-width:83.4375em){
     .home-page-container
     {
         grid-template-columns: 1fr;
@@ -78,14 +78,14 @@
     }
 }
 
-@media only screen and (max-width:1015px){
+@media only screen and (max-width:63.4375em){
     .home-page-container
     {
         min-height: calc(100vh - 157.23px);
     }
 }
 
-@media only screen and (max-width: 970px)
+@media only screen and (max-width: 60.625em)
 {
     .user-post
     {
@@ -93,7 +93,7 @@
     }
 }
 
-@media only screen and (max-width: 870px)
+@media only screen and (max-width: 54.375em)
 {
     .user-post
     {
@@ -101,7 +101,7 @@
     }
 }
 
-@media only screen and (max-width: 770px)
+@media only screen and (max-width: 48.125em)
 {
     .user-post
     {

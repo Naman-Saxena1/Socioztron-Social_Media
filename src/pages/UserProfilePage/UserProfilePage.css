@@ -11,7 +11,7 @@
     background-color: var(--background-color);
 }
 
-@media only screen and (max-width:1335px){
+@media only screen and (max-width:83.4375em){
     .user-profile-page-container
     {
         grid-template-columns: 1fr;
@@ -23,7 +23,7 @@
     }
 }
 
-@media only screen and (max-width:1015px){
+@media only screen and (max-width:63.4375em){
     .user-profile-page-container
     {
         min-height: calc(100vh - 157.23px);

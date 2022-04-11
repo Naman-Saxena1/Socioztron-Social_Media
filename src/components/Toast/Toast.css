@@ -4,7 +4,7 @@
     position: sticky;
     bottom: 5px;
     right: 5px;
-    z-index : 10;
+    z-index : var(--zindex-toast);
     overflow: hidden;
 }
 
@@ -33,9 +33,9 @@
 
 .toast
 {
-    width : 365px;
+    width : 36.5rem;
     color : #fff;
-    padding : 15px 15px 15px 15px;
+    padding : 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;

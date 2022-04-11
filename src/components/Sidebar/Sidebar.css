@@ -16,7 +16,7 @@
     box-sizing: border-box;
 }
 
-@media only screen and (max-width:1015px){
+@media only screen and (max-width:63.4375em){
     .sidebar
     {
         top: 15.8rem;

@@ -13,6 +13,8 @@
     --yellow-background-color     : #efe6e1;
     --light-grey    : #e4e6eb;
     --dull-grey     : #8f8f8f;
+    --zindex-toast  : 10;
+    --zindex-navbar : 15;
 }
 
 html
@@ -74,7 +76,7 @@ a:hover::after
     grid-template-columns: 25rem 1fr;
 }
 
-@media only screen and (max-width:1015px){
+@media only screen and (max-width:63.4375em){
     .page-container
     {
         min-height: calc(100vh - 157.23px);

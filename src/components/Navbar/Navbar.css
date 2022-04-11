@@ -1,6 +1,6 @@
 .top-bar
 {
-    z-index: 15;
+    z-index: var(--zindex-navbar);
     border: none;
     background-color: white;
     padding: 2rem 4rem;
@@ -8,7 +8,7 @@
     border-bottom: 1px solid var(--background-color);
 }
 
-@media only screen and (max-width:1305px){
+@media only screen and (max-width:81.5625em){
     .top-bar
     {
         flex-direction: row;
@@ -16,7 +16,7 @@
     }
 }
 
-@media only screen and (max-width:1015px){
+@media only screen and (max-width:63.4375em){
     .top-bar
     {
         flex-direction: column;
