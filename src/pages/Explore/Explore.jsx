@@ -8,15 +8,13 @@ import './Explore.css'
 
 function Explore()
 {
+    //This is just temporary template layout, kindly ignore it while reviewing
     return (
         <div className='page-container'>
             <Sidebar/>
             <div className='explore-page-container'>
                 <div className='explore-feed-container'>
                     
-                    <UserPost/>
-                    
-                    <UserPost/>
 
                 </div>
 

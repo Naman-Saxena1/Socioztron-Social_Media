@@ -13,8 +13,10 @@ import {
   UserProfilePage
 } from './pages/index'
 import './App.css';
+import { useEffect } from "react";
 
 function App() {
+
   return (
     <Router>
       <div className="App">

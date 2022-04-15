@@ -6,6 +6,7 @@
     --dark-grey-2   : #282c34;
     --royal-blue    : #29517C;
     --sky-blue      : #0e7490;
+    --like-btn-blue : #3b5998;
     --bluish-white  : #f6f6f6;
     --pure-white    : white;
     --red-color     : #ca0e1d;
@@ -24,6 +25,7 @@ html
 
 body
 {
+    z-index: 2;
     font-family: 'Comfortaa', cursive;
 }
 
@@ -67,6 +69,11 @@ a::after
 a:hover::after
 {
     width: 0;
+}
+
+hr
+{
+    width: 100%;
 }
 
 .page-container

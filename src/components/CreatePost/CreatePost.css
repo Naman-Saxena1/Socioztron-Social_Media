@@ -1,0 +1,149 @@
+.create-new-post
+{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.whats-on-your-mind
+{
+  font-family: Comfortaa;
+  font-size: 1.6rem;
+  padding: 1rem;
+  resize: none;
+  height: 10rem;
+  border: none;
+  outline: none;
+}
+
+.whats-on-your-mind:focus
+{
+  border: none;
+}
+
+.create-post-options-container
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--light-grey-2);
+}
+
+.create-post-options
+{
+  display: flex;
+  gap: 1rem;
+}
+
+.post-options-right-container
+{
+  display: flex;
+  align-items: center;
+}
+
+.new-post-ch-count
+{
+  width: 3.9rem;
+  height: 3.9rem;
+  margin: 0;
+  padding: 5px;
+  border : 1px solid var(--dark-blue-color);
+  border-radius : 50%;
+}
+
+.accepted-char-count
+{
+  color: var(--onlinestatus-or-success);
+  border-color: var(--onlinestatus-or-success);
+}
+
+.rejected-char-count
+{
+  color: var(--notification-or-error);
+  border-color: var(--notification-or-error);
+}
+
+.create-post-icons-container
+{
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.create-post-icons-container:hover
+{
+  background-color: var(--grey);
+}
+
+.create-new-post-icons
+{
+  font-size: 2.5rem;
+  color: var(--dark-grey);
+  cursor: pointer;
+}
+
+.create-new-post-disabled-btn
+{
+    min-width: 14.4rem;
+    min-height: 2.2rem;
+    padding: 1.2rem;
+    margin: 0 1rem;
+    border: none;
+    border-radius: 4px;
+    font-family: Comfortaa;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: ease .3s;
+    color: var(--pure-white);
+    background-color: var(--offline-grey-color);
+}
+
+@media only screen and (max-width:60.625em)
+{
+  .create-new-post-container .avatar
+  {
+    display: none;
+  }
+
+  .whats-on-your-mind
+  {
+    width: 46.8rem;
+  }
+
+  .create-post-options-container
+  {
+    width: 46.8rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media only screen and (max-width:54.375em)
+{
+  .whats-on-your-mind
+  {
+    width: 36.8rem;
+  }
+
+  .create-post-options-container
+  {
+    width: 36.8rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 48.125em)
+{
+  .whats-on-your-mind
+  {
+    width: 31.8rem;
+  }
+
+  .create-post-options-container
+  {
+    width: 31.8rem;
+  }
+}

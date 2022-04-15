@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import jwt_decode from "jwt-decode"
-import "./UserAuth.css"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import {
+    updateUserDetails
+} from "../../actions/index"
 import { 
     useToast, 
     useUserLogin
 } from "../../context/index"
+import "./UserAuth.css"
 
 function Login()
 {
+    const dispatch = useDispatch()
     const { setUserLoggedIn } = useUserLogin()
     const { showToast } = useToast()
 
@@ -29,10 +34,15 @@ function Login()
             }
         )
         .then(res => {
-            
             if(res.data.user)
             {
                 localStorage.setItem('socioztron-user-token',res.data.user)
+                let loggedInUserDetails = jwt_decode(res.data.user)
+                dispatch(updateUserDetails({
+                    loggedInUserName: loggedInUserDetails.name, 
+                    loggedInUserEmail: loggedInUserDetails.email, 
+                    loggedInUserProfile: loggedInUserDetails.userProfilePic
+                }))
                 showToast("success","Logged in successfully")
                 setUserLoggedIn(true)
                 navigate('/')
@@ -41,7 +51,6 @@ function Login()
             {
                 throw new Error("Error in user login")
             }
-
         })
         .catch(err=>{
             showToast("error","Error logging in user. Please try again")
