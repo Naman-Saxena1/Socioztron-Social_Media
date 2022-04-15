@@ -8,6 +8,7 @@ import './Explore.css'
 
 function Explore()
 {
+    //This is just temporary template layout, kindly ignore it while reviewing
     return (
         <div className='page-container'>
             <Sidebar/>
