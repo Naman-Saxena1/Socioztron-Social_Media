@@ -124,7 +124,7 @@ function CreatePost()
           </div>
 
           <div className="create-new-post">
-            <textarea className='whats-happening'  
+            <textarea className='whats-on-your-mind'  
             cols="50" 
             placeholder={`What's on your mind${inputTextareaPlaceholder}?`}
             value={newPostTextContent}
@@ -162,9 +162,9 @@ function CreatePost()
               <div className="post-options-right-container">
                 {
                   postCharCount<0 ?
-                    (<p style={{borderColor:"var(--notification-or-error)",color:"var(--notification-or-error)"}} className="new-post-ch-count">{postCharCount}</p>)
+                    (<p className="new-post-ch-count rejected-char-count">{postCharCount}</p>)
                   :
-                    (<p style={{borderColor:"var(--onlinestatus-or-success)",color:"var(--onlinestatus-or-success)"}} className="new-post-ch-count">{postCharCount}</p>)
+                    (<p className="new-post-ch-count accepted-char-count">{postCharCount}</p>)
                 }
                 {
                   postCharCount<0||postCharCount===280 ?

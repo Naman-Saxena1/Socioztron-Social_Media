@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     AiFillLike
 } from "../../assets/react-icons"
@@ -14,7 +14,16 @@ function UserPost({userPostDetails})
         noOfLikes
     } = userPostDetails;
 
+    const [postUserProfile, setPostUserProfile] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
     const [ showFullText, setShowFullText ] = useState(false)
+
+    useEffect(()=>{
+        if(userProfilePic!=="")
+        {
+            setPostUserProfile(userProfilePic)
+        }
+    },[])
+
     let postText1 = "", postText2 = "";
     
     let postTextArray = contentText.split(" ")
@@ -29,7 +38,6 @@ function UserPost({userPostDetails})
         postText2 = postTextArray.slice(46).join(" ")
     }
 
-
     return (
         <div className='user-post'>
             <div className="user-post-header">
@@ -37,9 +45,7 @@ function UserPost({userPostDetails})
                     <div className="avatar avatar-x-small">
                         <img 
                             className="avatar-img" 
-                            src={userProfilePic===""
-                            ?"https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg":
-                            userProfilePic} 
+                            src={postUserProfile} 
                             alt="avatar"
                         />
                         <span className="status-badge-x status-online"></span>

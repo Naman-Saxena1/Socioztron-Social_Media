@@ -5,10 +5,10 @@
   flex-direction: column;
 }
 
-.whats-happening
+.whats-on-your-mind
 {
   font-family: Comfortaa;
-  font-size: 16px;
+  font-size: 1.6rem;
   padding: 1rem;
   resize: none;
   height: 10rem;
@@ -16,7 +16,7 @@
   outline: none;
 }
 
-.whats-happening:focus
+.whats-on-your-mind:focus
 {
   border: none;
 }
@@ -43,6 +43,28 @@
   align-items: center;
 }
 
+.new-post-ch-count
+{
+  width: 3.9rem;
+  height: 3.9rem;
+  margin: 0;
+  padding: 5px;
+  border : 1px solid var(--dark-blue-color);
+  border-radius : 50%;
+}
+
+.accepted-char-count
+{
+  color: var(--onlinestatus-or-success);
+  border-color: var(--onlinestatus-or-success);
+}
+
+.rejected-char-count
+{
+  color: var(--notification-or-error);
+  border-color: var(--notification-or-error);
+}
+
 .create-post-icons-container
 {
   padding: 6px;
@@ -56,19 +78,9 @@
 
 .create-new-post-icons
 {
-  font-size: 25px;
+  font-size: 2.5rem;
   color: var(--dark-grey);
   cursor: pointer;
-}
-
-.new-post-ch-count
-{
-  width: 3.9rem;
-  height: 3.9rem;
-  margin: 0;
-  padding: 5px;
-  border : 1px solid var(--dark-blue-color);
-  border-radius : 50%;
 }
 
 .create-new-post-disabled-btn
@@ -95,7 +107,7 @@
     display: none;
   }
 
-  .whats-happening
+  .whats-on-your-mind
   {
     width: 46.8rem;
   }
@@ -110,7 +122,7 @@
 
 @media only screen and (max-width:54.375em)
 {
-  .whats-happening
+  .whats-on-your-mind
   {
     width: 36.8rem;
   }
@@ -125,7 +137,7 @@
 
 @media only screen and (max-width: 48.125em)
 {
-  .whats-happening
+  .whats-on-your-mind
   {
     width: 31.8rem;
   }
