@@ -21,15 +21,6 @@
     align-items: center;
 }
 
-.user-post
-{
-    height: 50rem;
-    width: 60rem;
-    /* width: 35rem; */
-    border-radius: 8px;
-    background-color: white;
-}
-
 .explore-suggestion-container
 {
     min-height: fit-content;
@@ -82,29 +73,5 @@
     .explore-page-container
     {
         min-height: calc(100vh - 157.23px);
-    }
-}
-
-@media only screen and (max-width: 60.625em)
-{
-    .user-post
-    {
-        width: 50rem;
-    }
-}
-
-@media only screen and (max-width: 54.375em)
-{
-    .user-post
-    {
-        width: 40rem;
-    }
-}
-
-@media only screen and (max-width: 48.125em)
-{
-    .user-post
-    {
-        width: 35rem;
     }
 }

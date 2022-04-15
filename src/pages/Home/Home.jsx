@@ -1,22 +1,47 @@
+import { useEffect } from "react"
+import axios from "axios"
+import { useSelector, useDispatch } from "react-redux"
+import {
+    updateHomeFeed
+} from "../../actions/index"
 import { 
     Sidebar,
     UserPost,
     WhatsHappeningCard,
-    ActiveContacts 
+    ActiveContacts,
+    CreatePost 
 } from '../../components'
 import './Home.css'
 
 function Home()
 {
+    const homeFeed = useSelector((state)=> state.homeFeedReducer)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        (async ()=>{
+        let updatedHomeFeed = await axios.get(
+            "https://socioztron.herokuapp.com/api/userpost"
+        )
+
+        dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed[0].allHomeFeedPosts))
+        })()
+
+    },[])
+
     return (
         <div className='page-container'>
             <Sidebar/>
             <div className='home-page-container'>
                 <div className='home-feed-container'>
                     
-                    <UserPost/>
-                    
-                    <UserPost/>
+                    <CreatePost/>
+
+                    {
+                        homeFeed.map(userPostDetails => 
+                            <UserPost key={userPostDetails._id} userPostDetails={userPostDetails}/>
+                        )
+                    }
 
                 </div>
 

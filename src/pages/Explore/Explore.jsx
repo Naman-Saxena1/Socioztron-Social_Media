@@ -14,9 +14,6 @@ function Explore()
             <div className='explore-page-container'>
                 <div className='explore-feed-container'>
                     
-                    <UserPost/>
-                    
-                    <UserPost/>
 
                 </div>
 

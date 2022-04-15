@@ -1,0 +1,128 @@
+.user-post hr
+{
+    color:var(--light-grey); 
+    border-style:solid;
+}
+
+.user-post-header
+{
+    height: 4.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-post-header .icon-btn
+{
+    width: 3.0rem;
+    height: 3.0rem;
+    padding: 0;
+    margin: 0 1rem;
+}
+
+.post-header-left-container, .active-connections-header-container
+{
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.post-header-left-container h3
+{
+    margin: 0 2rem;
+}
+
+.post-header-right-container
+{
+    width: fit-content;
+    display: flex;
+}
+
+.post-caption
+{
+    text-align: left;
+    line-height: 3.6rem;
+    padding: 5px 2.6rem 0 2.6rem;
+    margin: 0;
+}
+
+.post-see-more-text
+{
+    cursor: pointer;
+}
+
+.post-see-more-text:hover
+{
+    text-decoration: underline;
+}
+
+.post-img-container
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--white);
+}
+
+.post-img
+{
+    max-width: 35rem;
+    max-height: 40rem;
+    align-self: center;
+}
+
+.post-stats
+{
+    display: flex;
+    padding: 0 5px;
+    justify-content: space-between;
+}
+
+.post-stats-left-container
+{
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.user-post-icon-container
+{
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: var(--like-btn-blue);
+}
+
+.user-post-reaction-icons
+{
+    color: var(--white);
+}
+
+.post-stats-left-container p
+{
+    margin-left: 1rem;
+}
+
+.post-stats-right-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    gap: 10px;
+}
+
+.post-options
+{
+    display: flex;
+    padding: 1rem 0;
+}
+
+.post-options button
+{
+    min-width: 0;
+    flex-grow: 1;
+}
+
