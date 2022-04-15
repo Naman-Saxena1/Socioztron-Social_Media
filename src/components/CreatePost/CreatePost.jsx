@@ -97,6 +97,7 @@ function CreatePost()
                 {
                     dispatch(updateHomeFeed(updatedDataResponse.data.homefeed.allHomeFeedPosts))
                     setNewPostTextContent("")
+                    setPostCharCount(280)
                 }
             }
         }
