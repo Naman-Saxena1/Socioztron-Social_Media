@@ -17,15 +17,6 @@ import { useEffect } from "react";
 
 function App() {
 
-  useEffect(()=>{
-    let userAuthToken = localStorage.getItem("socioztron-user-token")
-
-    if(userAuthToken)
-    {
-      
-    }
-  },[])
-
   return (
     <Router>
       <div className="App">
