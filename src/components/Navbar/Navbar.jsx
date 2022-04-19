@@ -1,14 +1,23 @@
 import React, { useEffect } from 'react'
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import jwt_decode from "jwt-decode";
-import { useUserLogin, useToast } from "../../context/index"
 import { 
     AiOutlineHome,
     AiOutlineBell 
 } from "../../assets/react-icons"
+import { useUserLogin, useToast } from "../../context/index"
+import {
+    refreshHomeFeed
+} from "../../actions/index"
+import {
+    updateAllUserLikedPosts
+} from "../../actions/index"
 import './Navbar.css'
 
 function Navbar() {
+
+    const dispatch = useDispatch()
 
     const { setUserLoggedIn } = useUserLogin(false)
     const { showToast } = useToast()
@@ -33,9 +42,11 @@ function Navbar() {
 
     function logoutUser()
     {
+        dispatch(updateAllUserLikedPosts([]))
         localStorage.removeItem('socioztron-user-token')
         setUserLoggedIn(false)
         localStorage.clear()
+        dispatch(refreshHomeFeed())
         showToast("success","Logged out successfully")
     }
     

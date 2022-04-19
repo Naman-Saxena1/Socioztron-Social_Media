@@ -4,11 +4,12 @@ import promise from "redux-promise-middleware"
 import {
     homeFeedReducer,
     exploreFeedReducer,
-    userDetailsReducer
+    userDetailsReducer,
+    allLikedPostsReducer
 } from "./reducers/index"
 
 export default createStore(
-    combineReducers({homeFeedReducer, exploreFeedReducer, userDetailsReducer}),
+    combineReducers({homeFeedReducer, exploreFeedReducer, userDetailsReducer, allLikedPostsReducer}),
     {},
     applyMiddleware(thunk)
 )

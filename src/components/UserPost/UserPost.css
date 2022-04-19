@@ -117,11 +117,28 @@
 .post-options
 {
     display: flex;
-    padding: 1rem 0;
+    padding: 1rem;
+    gap: 1rem;
 }
 
-.post-options button
+.post-options .post-options-bottom-buttons
 {
-    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: calc(100%/3);
+    min-width: fit-content;
+    margin: 0;
+    /* flex-grow: 1; */
 }
 
+.post-options-button-icons
+{
+    font-size: 2rem;
+}
+
+.post-liked
+{
+    color: var(--like-btn-blue)
+}
