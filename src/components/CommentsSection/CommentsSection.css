@@ -1,0 +1,36 @@
+.user-post-all-comments-container
+{
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+}
+
+.create-new-comment-container
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.create-new-comment-input
+{
+    text-align: left;
+    min-height: fit-content;
+    height: auto;
+    flex: 1;
+    outline: none;
+    font-family: inherit;
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 3rem;
+    padding: 1rem 1.5rem;
+    margin-right: 2px;
+}
+
+.create-new-comment-input:active
+{
+    border: none;
+}

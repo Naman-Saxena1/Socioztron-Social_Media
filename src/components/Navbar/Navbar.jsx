@@ -11,7 +11,8 @@ import {
     refreshHomeFeed
 } from "../../actions/index"
 import {
-    updateAllUserLikedPosts
+    updateAllUserLikedPosts,
+    updateUserDetails
 } from "../../actions/index"
 import './Navbar.css'
 
@@ -42,6 +43,11 @@ function Navbar() {
 
     function logoutUser()
     {
+        dispatch(updateUserDetails({
+            loggedInUserName: "", 
+            loggedInUserEmail: "", 
+            loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+        }))
         dispatch(updateAllUserLikedPosts([]))
         localStorage.removeItem('socioztron-user-token')
         setUserLoggedIn(false)
