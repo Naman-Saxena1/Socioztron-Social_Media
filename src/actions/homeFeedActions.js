@@ -6,4 +6,11 @@ const updateHomeFeed = (updatedHomeFeed) =>
     }
 }
 
-export { updateHomeFeed }
+const refreshHomeFeed = () => {
+    return {
+        type: "REFRESH_HOME_FEED",
+        payload: []
+    }
+}
+
+export { updateHomeFeed, refreshHomeFeed}

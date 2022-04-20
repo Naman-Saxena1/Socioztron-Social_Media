@@ -3,7 +3,8 @@ export {
     AiOutlineBell,
     AiOutlineUser,
     AiOutlineFileGif,
-    AiFillLike
+    AiFillLike,
+    AiOutlineLike
 } from "react-icons/ai"
 
 export {
@@ -15,7 +16,8 @@ export {
     BiEnvelope,
     BiImageAdd,
     BiPoll,
-    BiMap
+    BiMap,
+    BiComment
 } from "react-icons/bi"
 
 export {
@@ -25,3 +27,7 @@ export {
 export {
     IoCalendarOutline
 } from "react-icons/io5"
+
+export {
+    RiShareForwardLine
+} from "react-icons/ri"

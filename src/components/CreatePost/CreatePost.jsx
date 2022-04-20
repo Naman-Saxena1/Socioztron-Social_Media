@@ -95,9 +95,9 @@ function CreatePost()
 
                 if(updatedDataResponse.data.status==="ok")
                 {
-                    dispatch(updateHomeFeed(updatedDataResponse.data.homefeed.allHomeFeedPosts))
-                    setNewPostTextContent("")
-                    setPostCharCount(280)
+                  dispatch(updateHomeFeed(updatedDataResponse.data.homefeed))
+                  setNewPostTextContent("")
+                  setPostCharCount(280)
                 }
             }
         }

@@ -2,8 +2,12 @@ import { useEffect } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import {
-    updateHomeFeed
+    updateHomeFeed,
+    updateAllUserLikedPosts
 } from "../../actions/index"
+import {
+    useUserLogin
+} from "../../context/index"
 import { 
     Sidebar,
     UserPost,
@@ -17,17 +21,28 @@ function Home()
 {
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
     const dispatch = useDispatch()
+    const { userLoggedIn } = useUserLogin()
 
     useEffect(()=>{
         (async ()=>{
-        let updatedHomeFeed = await axios.get(
-            "https://socioztron.herokuapp.com/api/userpost"
-        )
-
-        dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed[0].allHomeFeedPosts))
+            if(userLoggedIn)
+            {
+                let updatedAllUserLikedPosts = await axios.get(
+                    "https://socioztron.herokuapp.com/api/userpost/likedposts",
+                    { 
+                        headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
+                    }
+                )
+                dispatch(updateAllUserLikedPosts(updatedAllUserLikedPosts.data.likedPosts))
+            }
+     
+            let updatedHomeFeed = await axios.get(
+                "https://socioztron.herokuapp.com/api/userpost"
+            )
+            dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
         })()
 
-    },[])
+    },[userLoggedIn])
 
     return (
         <div className='page-container'>
@@ -52,7 +67,7 @@ function Home()
                         <hr></hr>
 
                         <WhatsHappeningCard/>
-
+                        
                     </div>
 
                     <div className='active-contacts-container'>

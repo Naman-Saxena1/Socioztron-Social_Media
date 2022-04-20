@@ -45,6 +45,9 @@
 
 .home-suggestion-container
 {
+    position: sticky;
+    top: 12.723rem;
+    align-self: flex-start;
     min-height: fit-content;
     padding: 1rem;
     display: flex;

@@ -1,4 +1,3 @@
-
 const exploreFeedReducer = (state = [], { type, payload}) => {
     switch(type)
     {
