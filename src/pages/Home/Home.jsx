@@ -67,7 +67,7 @@ function Home()
                         <hr></hr>
 
                         <WhatsHappeningCard/>
-
+                        
                     </div>
 
                     <div className='active-contacts-container'>
