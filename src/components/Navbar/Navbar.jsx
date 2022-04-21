@@ -36,6 +36,12 @@ function Navbar() {
             }
             else
             {
+                let loggedInUserDetails = jwt_decode(localStorage.getItem('socioztron-user-token'))
+                dispatch(updateUserDetails({
+                    loggedInUserName: loggedInUserDetails.name, 
+                    loggedInUserEmail: loggedInUserDetails.email, 
+                    loggedInUserProfile: loggedInUserDetails.userProfilePic
+                }))
                 setUserLoggedIn(true)
             }
         }

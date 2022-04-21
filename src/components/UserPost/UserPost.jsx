@@ -65,7 +65,7 @@ function UserPost({userPostDetails})
     },[allUserLikedPosts,userLoggedIn])
 
     let postText1 = "", postText2 = "";
-    
+
     let postTextArray = contentText.split(" ")
 
     if(postTextArray.length<45)
@@ -78,7 +78,7 @@ function UserPost({userPostDetails})
         postText2 = postTextArray.slice(46).join(" ")
     }
 
-    const handleOptionsHandler = async (callbackPostOptionsFunction) => {
+    const userLoginCheckHandler = async (callbackPostOptionsFunction) => {
         const token=localStorage.getItem("socioztron-user-token")
 
         if(token)
@@ -165,7 +165,7 @@ function UserPost({userPostDetails})
                     <p className="number-of-likes">{noOfLikes}</p>
                 </div>
                 <div className="post-stats-right-container">
-                    <p>73 comments</p>
+                    <p>{userPostDetails.allComments.length} comments</p>
                     <p>80 shares</p>
                 </div>
             </div>
@@ -176,7 +176,7 @@ function UserPost({userPostDetails})
                     ? (
                         <button 
                             className="outline-secondary-btn post-options-bottom-buttons post-liked"
-                            onClick={() => handleOptionsHandler(handlePostLikeStatus)}
+                            onClick={() => userLoginCheckHandler(handlePostLikeStatus)}
                         >
                             <AiFillLike className="post-options-button-icons"/>
                             Liked
@@ -184,7 +184,7 @@ function UserPost({userPostDetails})
                     ) : (
                         <button 
                             className="outline-secondary-btn post-options-bottom-buttons"
-                            onClick={() => handleOptionsHandler(handlePostLikeStatus)}
+                            onClick={() => userLoginCheckHandler(handlePostLikeStatus)}
                         >
                             <AiOutlineLike className="post-options-button-icons"/>
                             Like
@@ -206,7 +206,7 @@ function UserPost({userPostDetails})
             <hr></hr>
             {
                 showPostComments && (
-                    <CommentsSection/>
+                    <CommentsSection userPostDetails={userPostDetails}/>
                 )
             }
         </div>

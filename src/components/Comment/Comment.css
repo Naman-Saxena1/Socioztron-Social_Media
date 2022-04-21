@@ -1,0 +1,26 @@
+.single-comment-container .avatar
+{
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.single-comment-container .comment-container .comment
+{
+    font-size: 13px;
+    margin: 0;
+    word-break: break-all;
+}
+
+.comment-options
+{
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding-left: 2rem;
+}
+
+.comment-options li:hover
+{
+    cursor: pointer;
+    text-decoration: underline;    
+}
