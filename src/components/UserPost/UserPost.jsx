@@ -165,7 +165,15 @@ function UserPost({userPostDetails})
                     <p className="number-of-likes">{noOfLikes}</p>
                 </div>
                 <div className="post-stats-right-container">
-                    <p>{userPostDetails.allComments.length} comments</p>
+                    <p>
+                        {
+                            userPostDetails.allComments.length 
+                            + userPostDetails.allComments.reduce((acc, currentComment)=>{
+                                return  acc+currentComment.allRepliesOnComment.length
+                            },0)
+                        } 
+                        &nbsp;comments
+                    </p>
                     <p>80 shares</p>
                 </div>
             </div>

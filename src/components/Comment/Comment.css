@@ -1,3 +1,9 @@
+.single-comment-and-replies-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
 .single-comment-container .avatar
 {
     margin-top: 5px;
@@ -17,10 +23,126 @@
     display: flex;
     gap: 1.5rem;
     padding-left: 2rem;
+    user-select: none;
 }
 
 .comment-options li:hover
 {
     cursor: pointer;
     text-decoration: underline;    
+}
+
+
+/* New reply css */
+.create-new-reply-container
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 5rem;
+    margin-top: 1rem;
+}
+
+.create-new-reply-input
+{
+    min-height: fit-content;
+    height: auto;
+    resize: none;
+    text-align: left;
+    font-family: inherit;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    margin-right: 2px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 3rem;
+    overflow:hidden;
+    box-sizing: border-box;
+}
+
+.create-new-reply-input:active
+{
+    border: none;
+}
+
+.single-reply-container .avatar
+{
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.single-reply-container .reply-container .reply
+{
+    font-size: 13px;
+    margin: 0;
+    word-break: break-all;
+}
+
+
+/* Reply css */
+.replies-container
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5rem;
+    gap: 1rem;
+}
+
+.single-reply-container
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.replies-container .single-reply-container .reply-container
+{
+    min-height: 3rem;
+    height: fit-content;
+    margin: 0;
+    padding: 5px 1.8rem;
+    text-align: left;
+    flex-grow: 1;
+    border-radius: 3rem;
+    background-color: var(--background-color);
+}
+
+.single-reply-container .avatar
+{
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.single-reply-container .reply-container .reply
+{
+    font-size: 13px;
+    margin: 0;
+    word-break: break-all;
+}
+
+.right-reply-container
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.reply-container
+{
+    width: 100%;
+}
+
+.reply-container .reply-username
+{
+    font-size: 13px;
+    margin: 0;
+    font-weight: 900;
 }

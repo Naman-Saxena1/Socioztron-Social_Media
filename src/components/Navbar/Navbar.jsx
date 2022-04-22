@@ -20,7 +20,7 @@ function Navbar() {
 
     const dispatch = useDispatch()
 
-    const { setUserLoggedIn } = useUserLogin(false)
+    const { userLoggedIn, setUserLoggedIn } = useUserLogin(false)
     const { showToast } = useToast()
 
     useEffect(()=>{
@@ -37,15 +37,27 @@ function Navbar() {
             else
             {
                 let loggedInUserDetails = jwt_decode(localStorage.getItem('socioztron-user-token'))
-                dispatch(updateUserDetails({
-                    loggedInUserName: loggedInUserDetails.name, 
-                    loggedInUserEmail: loggedInUserDetails.email, 
-                    loggedInUserProfile: loggedInUserDetails.userProfilePic
-                }))
+                
+                if(""===loggedInUserDetails.userProfilePic)
+                {
+                    dispatch(updateUserDetails({
+                        loggedInUserName: loggedInUserDetails.name, 
+                        loggedInUserEmail: loggedInUserDetails.email, 
+                        loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+                    }))
+                }
+                else
+                {
+                    dispatch(updateUserDetails({
+                        loggedInUserName: loggedInUserDetails.name, 
+                        loggedInUserEmail: loggedInUserDetails.email, 
+                        loggedInUserProfile: loggedInUserDetails.userProfilePic
+                    }))
+                }
                 setUserLoggedIn(true)
             }
         }
-    },[])
+    },[userLoggedIn])
 
     function logoutUser()
     {

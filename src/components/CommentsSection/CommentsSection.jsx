@@ -22,7 +22,6 @@ const CommentsSection = ({ userPostDetails }) => {
     const { showToast } = useToast()
     const userDetails = useSelector(state => state.userDetailsReducer)
     const {
-        loggedInUserName,
         loggedInUserProfile
     } = userDetails
 
@@ -108,7 +107,12 @@ const CommentsSection = ({ userPostDetails }) => {
                 allComments.length!==0 && (
                     [...allComments].reverse().map(commentDetails => {
                         return (
-                            <Comment key={commentDetails._id} commentDetails={commentDetails}/>
+                            <Comment 
+                                key={commentDetails._id} 
+                                postId={_id}
+                                commentDetails={commentDetails}
+                                userLoginCheckHandler={userLoginCheckHandler}
+                            />
                         )
                     })
                 )
