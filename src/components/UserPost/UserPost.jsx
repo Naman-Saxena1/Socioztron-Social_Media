@@ -17,6 +17,9 @@ import {
     updateHomeFeed,
     updateAllUserLikedPosts
 } from "../../actions/index"
+import {
+    CommentsSection
+} from "../index"
 import './UserPost.css'
 
 function UserPost({userPostDetails})
@@ -38,6 +41,7 @@ function UserPost({userPostDetails})
     const [ postUserProfile, setPostUserProfile] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
     const [ showFullText, setShowFullText ] = useState(false)
     const [ postLikeStatus, setPostLikeStatus ] = useState(false)
+    const [ showPostComments, setShowPostComments ] = useState(false)
 
     useEffect(()=>{
         if(userProfilePic!=="")
@@ -60,9 +64,8 @@ function UserPost({userPostDetails})
         }
     },[allUserLikedPosts,userLoggedIn])
 
-
     let postText1 = "", postText2 = "";
-    
+
     let postTextArray = contentText.split(" ")
 
     if(postTextArray.length<45)
@@ -75,7 +78,7 @@ function UserPost({userPostDetails})
         postText2 = postTextArray.slice(46).join(" ")
     }
 
-    const handleOptionsHandler = async (callbackPostOptionsFunction) => {
+    const userLoginCheckHandler = async (callbackPostOptionsFunction) => {
         const token=localStorage.getItem("socioztron-user-token")
 
         if(token)
@@ -130,7 +133,7 @@ function UserPost({userPostDetails})
                     </div>
                     <h3>{userName}</h3>
                 </div>
-                <button className="icon-btn">
+                <button className="icon-btn userpost-more-options-btn">
                     <i className="fa fa-ellipsis-h fa-x" aria-hidden="true"></i>
                 </button>
             </div>
@@ -162,7 +165,15 @@ function UserPost({userPostDetails})
                     <p className="number-of-likes">{noOfLikes}</p>
                 </div>
                 <div className="post-stats-right-container">
-                    <p>73 comments</p>
+                    <p>
+                        {
+                            userPostDetails.allComments.length 
+                            + userPostDetails.allComments.reduce((acc, currentComment)=>{
+                                return  acc+currentComment.allRepliesOnComment.length
+                            },0)
+                        } 
+                        &nbsp;comments
+                    </p>
                     <p>80 shares</p>
                 </div>
             </div>
@@ -173,7 +184,7 @@ function UserPost({userPostDetails})
                     ? (
                         <button 
                             className="outline-secondary-btn post-options-bottom-buttons post-liked"
-                            onClick={() => handleOptionsHandler(handlePostLikeStatus)}
+                            onClick={() => userLoginCheckHandler(handlePostLikeStatus)}
                         >
                             <AiFillLike className="post-options-button-icons"/>
                             Liked
@@ -181,14 +192,17 @@ function UserPost({userPostDetails})
                     ) : (
                         <button 
                             className="outline-secondary-btn post-options-bottom-buttons"
-                            onClick={() => handleOptionsHandler(handlePostLikeStatus)}
+                            onClick={() => userLoginCheckHandler(handlePostLikeStatus)}
                         >
                             <AiOutlineLike className="post-options-button-icons"/>
                             Like
                         </button>
                     )
                 }
-                <button className="outline-secondary-btn post-options-bottom-buttons">
+                <button 
+                    className="outline-secondary-btn post-options-bottom-buttons"
+                    onClick={()=> setShowPostComments(prevState=> !prevState)}
+                >
                     <BiComment className="post-options-button-icons"/>
                     Comment
                 </button>
@@ -197,6 +211,12 @@ function UserPost({userPostDetails})
                     Share
                 </button>
             </div>
+            <hr></hr>
+            {
+                showPostComments && (
+                    <CommentsSection userPostDetails={userPostDetails}/>
+                )
+            }
         </div>
     )
 }

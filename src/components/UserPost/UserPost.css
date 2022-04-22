@@ -40,6 +40,28 @@
     display: flex;
 }
 
+.userpost-more-options-btn 
+{
+    color: var(--dark-grey-2);
+    background-color: var(--background-color);
+    background-position: center;
+    transition: background 0.5s;
+}
+
+.userpost-more-options-btn:hover 
+{
+    background: var(--background-color)
+                radial-gradient(circle, transparent 1%, 
+                                    var(--background-color) 1%) center/15000%;
+}
+
+.userpost-more-options-btn:active 
+{
+    background-color: var(--background-color);
+    background-size: 100%;
+    transition: background 0s;
+}
+
 .post-caption
 {
     text-align: left;

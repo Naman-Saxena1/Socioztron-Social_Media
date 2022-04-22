@@ -8,6 +8,7 @@
     --sky-blue      : #0e7490;
     --like-btn-blue : #3b5998;
     --bluish-white  : #f6f6f6;
+    --bluish-white-2: #f0f2f5;
     --pure-white    : white;
     --red-color     : #ca0e1d;
     --background-color-dull-yellow: #e0e0d4;
@@ -90,3 +91,12 @@ hr
     }
 }
 
+.status-badge-2x
+{
+    box-shadow: 0 0 0 3px var(--pure-white);
+}
+
+.status-badge-x
+{
+    box-shadow: 0 0 0 2px var(--pure-white);
+}

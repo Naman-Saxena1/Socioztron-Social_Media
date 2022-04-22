@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import jwt_decode from "jwt-decode"
 import axios from "axios"
 import {
     BiImageAdd,
@@ -11,8 +10,7 @@ import {
 } from "../../assets/react-icons"
 import { useSelector, useDispatch } from "react-redux"
 import {
-  updateHomeFeed,
-  updateUserDetails
+  updateHomeFeed
 } from "../../actions/index"
 import { 
     useUserLogin,
@@ -29,35 +27,14 @@ function CreatePost()
     const userDetails = useSelector(state => state.userDetailsReducer)
     const dispatch = useDispatch()
     const [inputTextareaPlaceholder, setInputTextareaPlaceholder] = useState("")
-    const [loggedInUserProfilePic, setLoggedInUserProfilePic] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
+    const {
+        loggedInUserName,
+        loggedInUserProfile
+    } = userDetails
 
     useEffect(()=>{
-      let socioztronUserAuthToken = localStorage.getItem("socioztron-user-token")
-      if(socioztronUserAuthToken && JSON.stringify(userDetails)===JSON.stringify({}))
+      if( userDetails.loggedInUserEmail!=="" && userLoggedIn)
       {
-        let loggedInUserDetails = jwt_decode(socioztronUserAuthToken)
-        dispatch(updateUserDetails({
-          loggedInUserName: loggedInUserDetails.name, 
-          loggedInUserEmail: loggedInUserDetails.email, 
-          loggedInUserProfile: loggedInUserDetails.userProfilePic
-        }))
-      }
-
-      if( JSON.stringify(userDetails)!==JSON.stringify({}) && userLoggedIn)
-      {
-        const {
-            loggedInUserName,
-            loggedInUserProfile
-        } = userDetails
-  
-        if(loggedInUserProfile==="")
-        {
-          setLoggedInUserProfilePic("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
-        }
-        else
-        {
-          setLoggedInUserProfilePic(loggedInUserProfile)
-        }
         setInputTextareaPlaceholder(`, ${loggedInUserName}`)
       }
       else
@@ -114,7 +91,7 @@ function CreatePost()
               {
                 userLoggedIn ?
                 (
-                    <img className="avatar-img" src={loggedInUserProfilePic} alt="avatar"/>
+                    <img className="avatar-img" src={loggedInUserProfile} alt="avatar"/>
                 ) 
                 : (
                     <img className="avatar-img" src="https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg" alt="avatar"/>
