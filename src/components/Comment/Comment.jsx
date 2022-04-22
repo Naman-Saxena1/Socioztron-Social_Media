@@ -28,7 +28,7 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
 
     const addReplyToComment = async () => {
         let updatedHomeFeedResponse = await axios.patch(
-            `http://localhost:1337/api/userpost/create-new-reply/${postId}/${_id}`,
+            `https://socioztron.herokuapp.com/api/userpost/create-new-reply/${postId}/${_id}`,
             {
                 newReplyText
             },

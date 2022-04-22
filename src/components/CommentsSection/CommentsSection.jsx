@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import jwt_decode from "jwt-decode"
@@ -34,7 +34,7 @@ const CommentsSection = ({ userPostDetails }) => {
     const addCommentToPost = async() => {
 
         let updatedHomeFeedResponse = await axios.patch(
-            `http://localhost:1337/api/userpost/create-new-comment/${_id}`,
+            `https://socioztron.herokuapp.com/api/userpost/create-new-comment/${_id}`,
             {
                 newCommentText
             },
