@@ -140,6 +140,20 @@ function UserPost({userPostDetails})
         }
     }
 
+    const deleteUserPost = async() => {
+        let deletePostResponse = await axios.delete(
+            `https://socioztron.herokuapp.com/api/userpost/delete/${_id}`,
+            {
+                headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
+            }
+        )
+
+        if(deletePostResponse.data.status==="ok")
+        {
+            dispatch(updateHomeFeed(deletePostResponse.data.homefeed))
+        }
+    }
+
     return (
         <div className='user-post'>
             <div className="user-post-header">
@@ -179,7 +193,17 @@ function UserPost({userPostDetails})
                             <HiOutlinePencilAlt className="post-more-options-icons"/>
                             <p>Edit Post</p>
                         </div>
-                        <div className="post-more-options">
+                        <div 
+                            className="post-more-options"
+                            onClick={()=>{
+                                userLoginCheckHandler(()=>{
+                                    checkIfPostUpdateAuthorized(()=>{
+                                        setShowPostMoreOptions(false);
+                                        deleteUserPost()
+                                    })
+                                })         
+                            }}
+                        >
                             <HiOutlineTrash className="post-more-options-icons"/>
                             <p>Delete Post</p>
                         </div>

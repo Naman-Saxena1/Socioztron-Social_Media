@@ -46,7 +46,7 @@ const EditPostModal = () => {
     const updateUserPost = async () => {
 
         let updatePostResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/userpost/editpost/${_id}`,
+            `https://socioztron.herokuapp.com/api/userpost/edit/${_id}`,
             {
                 updatedPostText
             },
