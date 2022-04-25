@@ -69,6 +69,7 @@
 {
   padding: 6px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .create-post-icons-container:hover
@@ -80,7 +81,6 @@
 {
   font-size: 2.5rem;
   color: var(--dark-grey);
-  cursor: pointer;
 }
 
 .create-new-post-disabled-btn

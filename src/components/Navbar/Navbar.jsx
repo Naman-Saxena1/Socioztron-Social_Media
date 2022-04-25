@@ -8,12 +8,13 @@ import {
 } from "../../assets/react-icons"
 import { useUserLogin, useToast } from "../../context/index"
 import {
-    refreshHomeFeed
-} from "../../actions/index"
-import {
+    refreshHomeFeed,
     updateAllUserLikedPosts,
     updateUserDetails
 } from "../../actions/index"
+import {
+    useEditModal
+} from "../../context/index"
 import './Navbar.css'
 
 function Navbar() {
@@ -22,6 +23,7 @@ function Navbar() {
 
     const { userLoggedIn, setUserLoggedIn } = useUserLogin(false)
     const { showToast } = useToast()
+    const { setShowEditModal } = useEditModal()
 
     useEffect(()=>{
         const token=localStorage.getItem('socioztron-user-token')
@@ -71,6 +73,7 @@ function Navbar() {
         setUserLoggedIn(false)
         localStorage.clear()
         dispatch(refreshHomeFeed())
+        setShowEditModal(false)
         showToast("success","Logged out successfully")
     }
     

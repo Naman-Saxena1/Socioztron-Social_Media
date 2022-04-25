@@ -7,11 +7,14 @@ import {
     AiFillLike,
     AiOutlineLike,
     BiComment,
-    RiShareForwardLine
+    RiShareForwardLine,
+    HiOutlinePencilAlt,
+    HiOutlineTrash
 } from "../../assets/react-icons"
 import {
     useUserLogin,
-    useToast
+    useToast,
+    useEditModal
 } from "../../context/index"
 import {
     updateHomeFeed,
@@ -27,6 +30,7 @@ function UserPost({userPostDetails})
     const allUserLikedPosts = useSelector(state => state.allLikedPostsReducer)
     const { userLoggedIn } = useUserLogin()
     const { showToast } = useToast()
+    const { setShowEditModal, setEditPostDetails} = useEditModal()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -34,6 +38,7 @@ function UserPost({userPostDetails})
         _id,
         contentText,
         userName,
+        userEmail,
         userProfilePic,
         noOfLikes
     } = userPostDetails;
@@ -42,6 +47,7 @@ function UserPost({userPostDetails})
     const [ showFullText, setShowFullText ] = useState(false)
     const [ postLikeStatus, setPostLikeStatus ] = useState(false)
     const [ showPostComments, setShowPostComments ] = useState(false)
+    const [ showPostMoreOptions, setShowPostMoreOptions ] = useState(false)
 
     useEffect(()=>{
         if(userProfilePic!=="")
@@ -102,6 +108,21 @@ function UserPost({userPostDetails})
         }
     }
 
+    const checkIfPostUpdateAuthorized = async (callbackUpdatePostFunctions) => {
+        const token=localStorage.getItem("socioztron-user-token")
+
+        const user = jwt_decode(token)
+        
+        if(userEmail===user.email)
+        {
+            callbackUpdatePostFunctions()
+        }
+        else
+        {
+            showToast("warning","User not authorized for this action!")
+        }
+    }
+
     const handlePostLikeStatus = async () => {
         setPostLikeStatus(prevState => !prevState)
         let updatedUserAndPostDetails = await axios.patch(
@@ -133,10 +154,38 @@ function UserPost({userPostDetails})
                     </div>
                     <h3>{userName}</h3>
                 </div>
-                <button className="icon-btn userpost-more-options-btn">
+                <button 
+                    className="icon-btn userpost-more-options-btn"
+                    onClick={()=>setShowPostMoreOptions(prevState=> !prevState)}
+                >
                     <i className="fa fa-ellipsis-h fa-x" aria-hidden="true"></i>
                 </button>
             </div>
+            {
+                showPostMoreOptions && (
+                    <div className="post-more-options-container">
+                        <div 
+                            className="post-more-options"
+                            onClick={()=>{
+                                userLoginCheckHandler(()=>{
+                                    checkIfPostUpdateAuthorized(()=>{
+                                        setShowPostMoreOptions(false);
+                                        setEditPostDetails(userPostDetails)
+                                        setShowEditModal(true);
+                                    })
+                                })         
+                            }}
+                        >
+                            <HiOutlinePencilAlt className="post-more-options-icons"/>
+                            <p>Edit Post</p>
+                        </div>
+                        <div className="post-more-options">
+                            <HiOutlineTrash className="post-more-options-icons"/>
+                            <p>Delete Post</p>
+                        </div>
+                    </div>
+                )
+            }
             <hr></hr>
             <p className="post-caption">
                 {postText1} &nbsp;
