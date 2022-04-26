@@ -2,6 +2,7 @@ import { useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import jwt_decode from "jwt-decode"
+import axios from "axios"
 import {
     useToast
 } from "../../context/index"
@@ -11,8 +12,10 @@ import {
 import {
     Comment
 } from "../index"
+import {
+    AiOutlineSend
+} from "../../assets/react-icons"
 import "./CommentsSection.css"
-import axios from "axios"
 
 const CommentsSection = ({ userPostDetails }) => {
     const {
@@ -25,14 +28,16 @@ const CommentsSection = ({ userPostDetails }) => {
         loggedInUserProfile
     } = userDetails
 
-    const [newCommentText, setNewCommentText ] = useState("")
+    const [newCommentTextContent, setNewCommentTextContent ] = useState("")
     const addCommentTextArea = useRef(null)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const addCommentToPost = async() => {
-
+        let newCommentText = newCommentTextContent
+        setNewCommentTextContent("")
+        addCommentTextArea.current.style.height = "35px";
         let updatedHomeFeedResponse = await axios.patch(
             `https://socioztron.herokuapp.com/api/userpost/create-new-comment/${_id}`,
             {
@@ -45,8 +50,6 @@ const CommentsSection = ({ userPostDetails }) => {
 
         if(updatedHomeFeedResponse.data.status==="ok")
         {
-            setNewCommentText("")
-            addCommentTextArea.current.style.height = "35px";
             dispatch(updateHomeFeed(updatedHomeFeedResponse.data.homefeed))
         }
     }
@@ -86,22 +89,32 @@ const CommentsSection = ({ userPostDetails }) => {
                     />
                     <span className="status-badge-x status-online"></span>
                 </div>
-                <textarea 
-                    className="create-new-comment-input"
-                    placeholder="Write a comment..."
-                    value={newCommentText}
-                    onChange={event=>{
-                        addCommentTextArea.current.style.height = "30px";
-                        addCommentTextArea.current.style.height = `${event.target.scrollHeight}px`;
-                        setNewCommentText(event.target.value)
-                    }}
-                    data-gramm="false"
-                    data-gramm_editor="false"
-                    data-enable-grammarly="false"
-                    onKeyDown={event => event.key==="Enter"?userLoginCheckHandler(addCommentToPost):""}
-                    rows={1} 
-                    ref={addCommentTextArea}
-                ></textarea>
+                <div className="create-comment-input-and-send">
+                    <textarea 
+                        className="create-new-comment-input"
+                        placeholder="Write a comment..."
+                        value={newCommentTextContent}
+                        onChange={event=>{
+                            addCommentTextArea.current.style.height = "30px";
+                            addCommentTextArea.current.style.height = `${event.target.scrollHeight}px`;
+                            setNewCommentTextContent(event.target.value)
+                        }}
+                        data-gramm="false"
+                        data-gramm_editor="false"
+                        data-enable-grammarly="false"
+                        rows={1} 
+                        ref={addCommentTextArea}
+                    ></textarea>
+                    <button 
+                        className="icon-btn send-reply-btn"
+                        onClick={()=>userLoginCheckHandler(addCommentToPost)}
+                    >
+                        <div>
+                            <span>Send</span>
+                            <AiOutlineSend/>
+                        </div>
+                    </button>
+                </div>
             </div>
             {
                 allComments.length!==0 && (

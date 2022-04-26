@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import jwt_decode from "jwt-decode";
 import { 
     AiOutlineHome,
@@ -8,20 +8,23 @@ import {
 } from "../../assets/react-icons"
 import { useUserLogin, useToast } from "../../context/index"
 import {
-    refreshHomeFeed
-} from "../../actions/index"
-import {
+    refreshHomeFeed,
     updateAllUserLikedPosts,
     updateUserDetails
 } from "../../actions/index"
+import {
+    useEditModal
+} from "../../context/index"
 import './Navbar.css'
 
 function Navbar() {
 
     const dispatch = useDispatch()
+    const location = useLocation()
 
     const { userLoggedIn, setUserLoggedIn } = useUserLogin(false)
     const { showToast } = useToast()
+    const { setShowEditModal } = useEditModal()
 
     useEffect(()=>{
         const token=localStorage.getItem('socioztron-user-token')
@@ -71,6 +74,7 @@ function Navbar() {
         setUserLoggedIn(false)
         localStorage.clear()
         dispatch(refreshHomeFeed())
+        setShowEditModal(false)
         showToast("success","Logged out successfully")
     }
     
@@ -100,13 +104,16 @@ function Navbar() {
                         </Link>
                     )
                 }
-                <Link to="/">
-                    <button className="icon-btn">
-                        <div>
-                            <AiOutlineHome/>
-                        </div>
-                    </button>
-                </Link>
+                {
+                    (location.pathname==="/login"||location.pathname==="/signup") && 
+                    <Link to="/">
+                        <button className="icon-btn">
+                            <div>
+                                <AiOutlineHome/>
+                            </div>
+                        </button>
+                    </Link>
+                }
                 <button className="icon-btn">
                     <div className="icon-count-badge">
                         <AiOutlineBell/>

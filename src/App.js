@@ -1,8 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { 
   Navbar,
-  Toast
+  Toast,
+  EditPostModal
 } from './components/index'
+import {
+  useEditModal
+} from "./context/index"
 import {
   Signup,
   Login,
@@ -15,6 +19,7 @@ import {
 import './App.css';
 
 function App() {
+  const { showEditModal } = useEditModal()
 
   return (
     <Router>
@@ -29,6 +34,9 @@ function App() {
           <Route path="/bookmarks"      element={<Bookmarks/>} />
           <Route path="/profile"        element={<UserProfilePage/>} />
         </Routes>
+        {
+          showEditModal && (<EditPostModal/>)
+        }
         <Toast position="bottom-right"/>
       </div>
     </Router>

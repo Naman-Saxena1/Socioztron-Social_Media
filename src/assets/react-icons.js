@@ -4,13 +4,9 @@ export {
     AiOutlineUser,
     AiOutlineFileGif,
     AiFillLike,
-    AiOutlineLike
+    AiOutlineLike,
+    AiOutlineSend
 } from "react-icons/ai"
-
-export {
-    MdOutlineExplore,
-    MdOutlineBookmarkBorder
-} from "react-icons/md"
 
 export {
     BiEnvelope,
@@ -21,12 +17,27 @@ export {
 } from "react-icons/bi"
 
 export {
-    BsEmojiSmile
+    BsEmojiSmile,
+    BsBookmark
 } from "react-icons/bs"
+
+export {
+    CgClose
+} from "react-icons/cg"
+
+export {
+    HiOutlinePencilAlt,
+    HiOutlineTrash
+} from "react-icons/hi"
 
 export {
     IoCalendarOutline
 } from "react-icons/io5"
+
+export {
+    MdOutlineExplore,
+    MdOutlineBookmarkBorder
+} from "react-icons/md"
 
 export {
     RiShareForwardLine

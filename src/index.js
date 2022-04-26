@@ -7,7 +7,8 @@ import store from "./store"
 
 import { 
   UserLoginContextProvider,
-  ToastContextProvider 
+  ToastContextProvider,
+  EditPostContextProvider 
 } from './context/index'
 
 const container = document.getElementById('root');
@@ -19,9 +20,11 @@ root.render(
   <StrictMode>
     <UserLoginContextProvider>
       <ToastContextProvider>
-        <Provider store={store}>
-          <App/>
-        </Provider>
+        <EditPostContextProvider>
+          <Provider store={store}>
+            <App/>
+          </Provider>
+        </EditPostContextProvider>
       </ToastContextProvider>
     </UserLoginContextProvider>
   </StrictMode>

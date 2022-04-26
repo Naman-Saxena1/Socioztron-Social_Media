@@ -5,6 +5,9 @@ import axios from "axios"
 import {
     updateHomeFeed
 } from "../../actions/index"
+import {
+    AiOutlineSend
+} from "../../assets/react-icons"
 import "./Comment.css"
 
 const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
@@ -20,13 +23,16 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
         loggedInUserProfile
     } = userDetails
 
-    const [newReplyText, setNewReplyText ] = useState("")
+    const [newReplyTextContent, setNewReplyTextContent ] = useState("")
     const addReplyTextArea = useRef(null)
     const [ showCreateReply, setShowCreateReply ] = useState(false)
 
     const dispatch = useDispatch()
 
     const addReplyToComment = async () => {
+        let newReplyText = newReplyTextContent
+        setNewReplyTextContent("")
+        addReplyTextArea.current.style.height = "35px";
         let updatedHomeFeedResponse = await axios.patch(
             `https://socioztron.herokuapp.com/api/userpost/create-new-reply/${postId}/${_id}`,
             {
@@ -39,8 +45,6 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
 
         if(updatedHomeFeedResponse.data.status==="ok")
         {
-            setNewReplyText("")
-            addReplyTextArea.current.style.height = "35px";
             dispatch(updateHomeFeed(updatedHomeFeedResponse.data.homefeed))
         }
     }
@@ -109,22 +113,32 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
                             />
                             <span className="status-badge-x status-online"></span>
                         </div>
-                        <textarea 
-                            className="create-new-reply-input"
-                            placeholder={`Reply to ${commentUserName}...`}
-                            value={newReplyText}
-                            onChange={event=>{
-                                addReplyTextArea.current.style.height = "30px";
-                                addReplyTextArea.current.style.height = `${event.target.scrollHeight}px`;
-                                setNewReplyText(event.target.value)
-                            }}
-                            data-gramm="false"
-                            data-gramm_editor="false"
-                            data-enable-grammarly="false"
-                            onKeyDown={event => event.key==="Enter"?userLoginCheckHandler(addReplyToComment):""}
-                            rows={1} 
-                            ref={addReplyTextArea}
-                        ></textarea>
+                        <div className="create-comment-input-and-send">
+                            <textarea 
+                                className="create-new-reply-input"
+                                placeholder={`Reply to ${commentUserName}...`}
+                                value={newReplyTextContent}
+                                onChange={event=>{
+                                    addReplyTextArea.current.style.height = "30px";
+                                    addReplyTextArea.current.style.height = `${event.target.scrollHeight}px`;
+                                    setNewReplyTextContent(event.target.value)
+                                }}
+                                data-gramm="false"
+                                data-gramm_editor="false"
+                                data-enable-grammarly="false"
+                                rows={1} 
+                                ref={addReplyTextArea}
+                            ></textarea>
+                            <button 
+                                className="icon-btn send-reply-btn"
+                                onClick={()=>userLoginCheckHandler(addReplyToComment)}
+                            >
+                                <div>
+                                    <span>Send</span>
+                                    <AiOutlineSend/>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 )
             }

@@ -15,6 +15,7 @@
     font-size: 13px;
     margin: 0;
     word-break: break-all;
+    white-space: pre-line;
 }
 
 .comment-options
@@ -39,7 +40,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     padding-left: 5rem;
     margin-top: 1rem;
@@ -48,13 +49,12 @@
 .create-new-reply-input
 {
     min-height: fit-content;
-    height: auto;
+    width: -webkit-fill-available;
     resize: none;
     text-align: left;
     font-family: inherit;
     padding: 1rem 1.5rem 1rem 1.5rem;
     margin-right: 2px;
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +82,7 @@
     font-size: 13px;
     margin: 0;
     word-break: break-all;
+    white-space: pre-line;
 }
 
 
