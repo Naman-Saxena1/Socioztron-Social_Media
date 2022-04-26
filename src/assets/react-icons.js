@@ -4,7 +4,8 @@ export {
     AiOutlineUser,
     AiOutlineFileGif,
     AiFillLike,
-    AiOutlineLike
+    AiOutlineLike,
+    AiOutlineSend
 } from "react-icons/ai"
 
 export {
@@ -16,7 +17,8 @@ export {
 } from "react-icons/bi"
 
 export {
-    BsEmojiSmile
+    BsEmojiSmile,
+    BsBookmark
 } from "react-icons/bs"
 
 export {

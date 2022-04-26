@@ -9,7 +9,8 @@ import {
     BiComment,
     RiShareForwardLine,
     HiOutlinePencilAlt,
-    HiOutlineTrash
+    HiOutlineTrash,
+    BsBookmark
 } from "../../assets/react-icons"
 import {
     useUserLogin,
@@ -28,6 +29,7 @@ import './UserPost.css'
 function UserPost({userPostDetails})
 {
     const allUserLikedPosts = useSelector(state => state.allLikedPostsReducer)
+    const loggedInUserDetails = useSelector(state => state.userDetailsReducer)
     const { userLoggedIn } = useUserLogin()
     const { showToast } = useToast()
     const { setShowEditModal, setEditPostDetails} = useEditModal()
@@ -49,6 +51,8 @@ function UserPost({userPostDetails})
     const [ showPostComments, setShowPostComments ] = useState(false)
     const [ showPostMoreOptions, setShowPostMoreOptions ] = useState(false)
 
+    const [ allowPostOwnerOptions, setAllowPostOwnerOptions ] = useState(false)
+
     useEffect(()=>{
         if(userProfilePic!=="")
         {
@@ -69,6 +73,13 @@ function UserPost({userPostDetails})
             setPostLikeStatus(false)
         }
     },[allUserLikedPosts,userLoggedIn])
+
+    useEffect(()=>{
+        if(userPostDetails.userEmail===loggedInUserDetails.loggedInUserEmail)
+        {
+            setAllowPostOwnerOptions(true)
+        }
+    },[userLoggedIn])
 
     let postText1 = "", postText2 = "";
 
@@ -105,21 +116,6 @@ function UserPost({userPostDetails})
         else
         {
             showToast("warning","Kindly Login")
-        }
-    }
-
-    const checkIfPostUpdateAuthorized = async (callbackUpdatePostFunctions) => {
-        const token=localStorage.getItem("socioztron-user-token")
-
-        const user = jwt_decode(token)
-        
-        if(userEmail===user.email)
-        {
-            callbackUpdatePostFunctions()
-        }
-        else
-        {
-            showToast("warning","User not authorized for this action!")
         }
     }
 
@@ -182,49 +178,64 @@ function UserPost({userPostDetails})
                             className="post-more-options"
                             onClick={()=>{
                                 userLoginCheckHandler(()=>{
-                                    checkIfPostUpdateAuthorized(()=>{
-                                        setShowPostMoreOptions(false);
-                                        setEditPostDetails(userPostDetails)
-                                        setShowEditModal(true);
-                                    })
+                                    console.log("Bookmark this post!")    
                                 })         
                             }}
                         >
-                            <HiOutlinePencilAlt className="post-more-options-icons"/>
-                            <p>Edit Post</p>
+                            <BsBookmark className="post-more-options-icons"/>
+                            <p>Bookmark Post</p>
                         </div>
-                        <div 
-                            className="post-more-options"
-                            onClick={()=>{
-                                userLoginCheckHandler(()=>{
-                                    checkIfPostUpdateAuthorized(()=>{
-                                        setShowPostMoreOptions(false);
-                                        deleteUserPost()
-                                    })
-                                })         
-                            }}
-                        >
-                            <HiOutlineTrash className="post-more-options-icons"/>
-                            <p>Delete Post</p>
-                        </div>
+                        {
+                            allowPostOwnerOptions && (
+                                <div 
+                                    className="post-more-options"
+                                    onClick={()=>{
+                                        userLoginCheckHandler(()=>{
+                                            setShowPostMoreOptions(false);
+                                            setEditPostDetails(userPostDetails)
+                                            setShowEditModal(true);      
+                                        })         
+                                    }}
+                                >
+                                    <HiOutlinePencilAlt className="post-more-options-icons"/>
+                                    <p>Edit Post</p>
+                                </div>
+                            )
+                        }
+                        {
+                            allowPostOwnerOptions && (
+                                <div 
+                                    className="post-more-options"
+                                    onClick={()=>{
+                                        userLoginCheckHandler(()=>{
+                                                setShowPostMoreOptions(false);
+                                                deleteUserPost()
+                                        })         
+                                    }}
+                                >
+                                    <HiOutlineTrash className="post-more-options-icons"/>
+                                    <p>Delete Post</p>
+                                </div>
+                            )
+                        }
                     </div>
                 )
             }
             <hr></hr>
             <p className="post-caption">
-                {postText1} &nbsp;
+                {postText1}
                 {
                     (postTextArray.length>=45&&!showFullText) &&
                     <span 
                         onClick={()=>setShowFullText(true)}
                         className="post-see-more-text"
                     >
-                        <b>... See More</b>
+                        <b>&nbsp;... See More</b>
                     </span>
                 }
                 {
                     showFullText && 
-                    <span>{postText2}</span>
+                    <span>&nbsp;{postText2}</span>
                 }
             </p>
             {/* <div className="post-img-container">
