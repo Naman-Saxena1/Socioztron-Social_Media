@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useState,useEffect } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import {
     updateHomeFeed,
-    updateAllUserLikedPosts
+    updateAllUserLikedPosts,
+    getCreationSortedPosts
 } from "../../actions/index"
 import {
     useUserLogin
@@ -13,7 +14,8 @@ import {
     UserPost,
     WhatsHappeningCard,
     ActiveContacts,
-    CreatePost 
+    CreatePost,
+    HomeFeedContentController
 } from '../../components'
 import './Home.css'
 
@@ -22,6 +24,8 @@ function Home()
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
     const dispatch = useDispatch()
     const { userLoggedIn } = useUserLogin()
+    const [ trendingHomeFeed, setTrendingHomeFeed ] = useState(false)
+    const [ sortByHomeFeed, setSortByHomeFeed ] = useState("Latest")
 
     useEffect(()=>{
         (async ()=>{
@@ -44,6 +48,10 @@ function Home()
 
     },[userLoggedIn])
 
+    useEffect(()=>{
+        dispatch(getCreationSortedPosts())
+    },[sortByHomeFeed])
+
     return (
         <div className='page-container'>
             <Sidebar/>
@@ -51,10 +59,32 @@ function Home()
                 <div className='home-feed-container'>
                     
                     <CreatePost/>
-
+                    <HomeFeedContentController 
+                        trendingHomeFeed={trendingHomeFeed} 
+                        setTrendingHomeFeed={setTrendingHomeFeed}
+                        sortByHomeFeed={sortByHomeFeed} 
+                        setSortByHomeFeed={setSortByHomeFeed} 
+                    />
+                    
                     {
-                        homeFeed.map(userPostDetails => 
-                            <UserPost key={userPostDetails._id} userPostDetails={userPostDetails}/>
+                        trendingHomeFeed?
+                        (
+                            homeFeed.filter(userPost=> userPost.noOfLikes>=2)
+                            .map(userPostDetails => 
+                                <UserPost 
+                                    key={userPostDetails._id} 
+                                    userPostDetails={userPostDetails}
+                                />
+                            )
+                        )
+                        :
+                        (
+                            homeFeed.map(userPostDetails => 
+                                <UserPost 
+                                    key={userPostDetails._id} 
+                                    userPostDetails={userPostDetails}
+                                />
+                            )
                         )
                     }
 
