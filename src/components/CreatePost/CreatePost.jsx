@@ -139,6 +139,7 @@ function CreatePost()
                     {
                       showEmojiPicker && 
                       <div
+                        className="create-post-emoji-container"
                         onClick={event=>{
                           event.stopPropagation()
                         }}
