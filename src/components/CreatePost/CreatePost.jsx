@@ -16,6 +16,7 @@ import {
     useUserLogin,
     useToast
 } from "../../context/index"
+import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import "./CreatePost.css"
 
 function CreatePost()
@@ -27,6 +28,7 @@ function CreatePost()
     const userDetails = useSelector(state => state.userDetailsReducer)
     const dispatch = useDispatch()
     const [inputTextareaPlaceholder, setInputTextareaPlaceholder] = useState("")
+    const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)
     const {
         loggedInUserName,
         loggedInUserProfile
@@ -49,6 +51,10 @@ function CreatePost()
         setInputTextareaPlaceholder("")
       }
     })
+
+    const onEmojiClick = (event, emojiObject) => {
+      setNewPostTextContent(prevState => prevState+emojiObject.emoji)
+    }
 
     const createNewPost = async () => {
         if(userLoggedIn)
@@ -125,8 +131,25 @@ function CreatePost()
                   <div className="create-post-icons-container">
                     <BiPoll className="create-new-post-icons"/>
                   </div>
-                  <div className="create-post-icons-container">
+                  <div 
+                    className="create-post-icons-container"
+                    onClick={()=>setShowEmojiPicker(prevState => !prevState)}
+                  >
                     <BsEmojiSmile className="create-new-post-icons"/>
+                    {
+                      showEmojiPicker && 
+                      <div
+                        onClick={event=>{
+                          event.stopPropagation()
+                        }}
+                      >
+                        <Picker 
+                          className="emoji-picker" 
+                          onEmojiClick={onEmojiClick} 
+                          skinTone={SKIN_TONE_NEUTRAL} 
+                        />
+                      </div>
+                    }
                   </div>
                   <div className="create-post-icons-container">
                     <IoCalendarOutline className="create-new-post-icons"/>

@@ -51,7 +51,7 @@
     width: 60rem;
     border-radius: 8px;
     background-color: var(--pure-white);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .home-suggestion-container
