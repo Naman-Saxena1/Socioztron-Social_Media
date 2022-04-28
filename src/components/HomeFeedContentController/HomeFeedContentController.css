@@ -36,7 +36,10 @@
     font-size: 1.3rem;
     padding: 1.24rem;
     border-radius: 2rem;
-    color: var(--pink-color);
+    color: var(--pure-white);
+    background-image: linear-gradient(
+        to right top, #ef836d, #e57871, 
+        #d96e74, #cc6576, #bd5d78);
     border: 1px solid var(--pink-color);
     cursor: pointer;
     user-select: none;
