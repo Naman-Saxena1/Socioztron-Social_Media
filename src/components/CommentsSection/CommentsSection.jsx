@@ -13,8 +13,10 @@ import {
     Comment
 } from "../index"
 import {
-    AiOutlineSend
+    AiOutlineSend,
+    BsEmojiSmile
 } from "../../assets/react-icons"
+import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import "./CommentsSection.css"
 
 const CommentsSection = ({ userPostDetails }) => {
@@ -28,11 +30,16 @@ const CommentsSection = ({ userPostDetails }) => {
         loggedInUserProfile
     } = userDetails
 
-    const [newCommentTextContent, setNewCommentTextContent ] = useState("")
+    const [ newCommentTextContent, setNewCommentTextContent ] = useState("")
+    const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)
     const addCommentTextArea = useRef(null)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const onEmojiClick = (event, emojiObject) => {
+        setNewCommentTextContent(prevState => prevState+emojiObject.emoji)
+    }
 
     const addCommentToPost = async() => {
         let newCommentText = newCommentTextContent
@@ -105,15 +112,40 @@ const CommentsSection = ({ userPostDetails }) => {
                         rows={1} 
                         ref={addCommentTextArea}
                     ></textarea>
-                    <button 
-                        className="icon-btn send-reply-btn"
-                        onClick={()=>userLoginCheckHandler(addCommentToPost)}
+                    <div 
+                        className="create-comment-options"
                     >
-                        <div>
-                            <span>Send</span>
-                            <AiOutlineSend/>
+                        <div 
+                            className="emoji-container"
+                            onClick={()=>setShowEmojiPicker(prevState => !prevState)}
+                        >
+                            <BsEmojiSmile className="create-new-post-icons"/>
+                            {
+                                showEmojiPicker && 
+                                <div
+                                    className="emoji-picker-container"
+                                    onClick={event=>{
+                                    event.stopPropagation()
+                                    }}
+                                >
+                                    <Picker 
+                                    className="emoji-picker" 
+                                    onEmojiClick={onEmojiClick} 
+                                    skinTone={SKIN_TONE_NEUTRAL} 
+                                    />
+                                </div>
+                            }
                         </div>
-                    </button>
+                        <button 
+                            className="icon-btn send-reply-btn"
+                            onClick={()=>userLoginCheckHandler(addCommentToPost)}
+                        >
+                            <div>
+                                <span>Send</span>
+                                <AiOutlineSend/>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
             {

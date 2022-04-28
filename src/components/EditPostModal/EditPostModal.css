@@ -102,12 +102,24 @@
 {
     text-align: left;
     outline: none;
-    height: 26rem;
+    height: 22rem;
     resize: none;
     border: none;
     font-family: 'Comfortaa';
     font-size: 16px;
     padding-top: 2rem;
+}
+
+.add-to-post-options-container
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 2rem 1rem 2rem;
+    padding: 0 1rem;
+    gap: 1rem;
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
 }
 
 .edit-post-save-btn

@@ -2,7 +2,8 @@ import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import axios from "axios"
 import {
-    CgClose
+    CgClose,
+    BsEmojiSmile
 } from "../../assets/react-icons"
 import {
     useEditModal
@@ -10,6 +11,7 @@ import {
 import {
     updateHomeFeed
 } from "../../actions/index"
+import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import "./EditPostModal.css"
 
 const EditPostModal = () => {
@@ -27,8 +29,13 @@ const EditPostModal = () => {
         setEditPostDetails
     } = useEditModal()
 
-    const [updatedPostText, setUpdatedPostText ] = useState(contentText)
+    const [ updatedPostText, setUpdatedPostText ] = useState(contentText)
+    const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)
     const dispatch = useDispatch()
+
+    const onEmojiClick = (event, emojiObject) => {
+        setUpdatedPostText(prevState => prevState+emojiObject.emoji)
+    }
 
     useEffect(()=>{
         if(userProfilePic!=="")
@@ -98,6 +105,31 @@ const EditPostModal = () => {
                         }}
                     >
                     </textarea>
+                </div>
+
+                <div className="add-to-post-options-container">
+                    <p>Add to your post</p>
+                    <div 
+                        className="emoji-container"
+                        onClick={()=>setShowEmojiPicker(prevState => !prevState)}
+                    >
+                        <BsEmojiSmile className="create-new-post-icons"/>
+                        {
+                            showEmojiPicker && 
+                            <div
+                                className="emoji-picker-container"
+                                    onClick={event=>{
+                                        event.stopPropagation()
+                                    }}
+                            >
+                                <Picker 
+                                    className="emoji-picker" 
+                                    onEmojiClick={onEmojiClick} 
+                                    skinTone={SKIN_TONE_NEUTRAL} 
+                                />
+                            </div>
+                        }
+                    </div>
                 </div>
 
                 <button 

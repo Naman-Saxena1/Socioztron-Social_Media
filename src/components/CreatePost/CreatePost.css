@@ -67,6 +67,7 @@
 
 .create-post-icons-container
 {
+  position: relative;
   padding: 6px;
   border-radius: 50%;
   cursor: pointer;
@@ -77,10 +78,28 @@
   background-color: var(--grey);
 }
 
+.create-post-emoji-container
+{
+  position: absolute;
+  left: -7rem;
+}
+
 .create-new-post-icons
 {
   font-size: 2.5rem;
   color: var(--dark-grey);
+}
+
+.create-post-icons-container aside
+{
+  position: absolute;
+  z-index: var(--zindex-emoji-picker);
+}
+
+.create-post-icons-container aside nav
+{
+  min-width: 27.8rem;
+  background-image: none;
 }
 
 .create-new-post-disabled-btn

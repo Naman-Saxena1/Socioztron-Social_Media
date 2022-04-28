@@ -13,4 +13,11 @@ const refreshHomeFeed = () => {
     }
 }
 
-export { updateHomeFeed, refreshHomeFeed}
+const getCreationSortedPosts = () => {
+    return {
+        type: "SORT_HOME_FEED_BY_CREATION",
+        payload: []
+    }
+}
+
+export { updateHomeFeed, refreshHomeFeed, getCreationSortedPosts}

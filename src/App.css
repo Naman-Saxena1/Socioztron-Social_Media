@@ -17,6 +17,8 @@
     --light-grey    : #e4e6eb;
     --dull-grey     : #8f8f8f;
     --modal-background: #f3f3f3a2;
+    --zindex-emoji-picker : 5; 
+    --zindex-homefeed-sort-dropdown: 6;
     --zindex-edit-post-modal: 8;
     --zindex-toast  : 10;
     --zindex-navbar : 15;

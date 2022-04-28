@@ -28,9 +28,20 @@
     width: 60rem;
     padding: 1.6rem;
     border-radius: 8px;
-    background-color: white;
+    background-color: var(--pure-white);
     display: flex;
     gap: 1rem;
+    border: 1px solid var(--light-grey-2);
+}
+
+.homefeed-controller-container
+{
+    min-height: 5rem;
+    height: fit-content;
+    width: 60rem;
+    padding: 1.6rem;
+    border-radius: 8px;
+    background-color: var(--pure-white);
     border: 1px solid var(--light-grey-2);
 }
 
@@ -39,8 +50,7 @@
     height: fit-content;
     width: 60rem;
     border-radius: 8px;
-    background-color: white;
-    overflow: hidden;
+    background-color: var(--pure-white);
 }
 
 .home-suggestion-container
@@ -64,7 +74,7 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--pure-white);
 }
 
 .home-suggestion-container hr
@@ -79,7 +89,7 @@
     padding:  1rem 2rem;
     border-radius: 8px;
     text-align: left;
-    background-color: white;
+    background-color: var(--pure-white);
 }
 
 @media only screen and (max-width:83.4375em){
@@ -103,7 +113,7 @@
 
 @media only screen and (max-width: 60.625em)
 {
-    .user-post, .create-new-post-container
+    .user-post, .create-new-post-container, .homefeed-controller-container
     {
         width: 50rem;
     }
@@ -111,7 +121,7 @@
 
 @media only screen and (max-width: 54.375em)
 {
-    .user-post, .create-new-post-container
+    .user-post, .create-new-post-container, .homefeed-controller-container
     {
         width: 40rem;
     }
@@ -119,7 +129,7 @@
 
 @media only screen and (max-width: 48.125em)
 {
-    .user-post, .create-new-post-container
+    .user-post, .create-new-post-container, .homefeed-controller-container
     {
         width: 35rem;
     }
