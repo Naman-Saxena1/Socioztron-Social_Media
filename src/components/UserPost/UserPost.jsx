@@ -39,6 +39,7 @@ function UserPost({userPostDetails})
     const {
         _id,
         contentText,
+        imgSrc,
         userName,
         userEmail,
         userProfilePic,
@@ -238,9 +239,13 @@ function UserPost({userPostDetails})
                     <span>&nbsp;{postText2}</span>
                 }
             </p>
-            {/* <div className="post-img-container">
-                <img className="post-img" src="https://enztron-temp-deployed-branch.netlify.app/Icons-and-Images/List-Images/clifford-VobvKmG-StA-unsplash.jpg" alt="postImage"/>
-            </div> */}
+            {
+                imgSrc!=="" && (   
+                    <div className="post-img-container">
+                        <img className="post-img" src={imgSrc} alt="postImage"/>
+                    </div>
+                )
+            }
             <div className="post-stats">
                 <div className="post-stats-left-container">
                     <div className="user-post-icon-container">

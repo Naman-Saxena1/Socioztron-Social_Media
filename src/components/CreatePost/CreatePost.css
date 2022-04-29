@@ -11,7 +11,7 @@
   font-size: 1.6rem;
   padding: 1rem;
   resize: none;
-  height: 10rem;
+  height: 15rem;
   border: none;
   outline: none;
 }
@@ -51,6 +51,7 @@
   padding: 5px;
   border : 1px solid var(--dark-blue-color);
   border-radius : 50%;
+  user-select: none;
 }
 
 .accepted-char-count
@@ -100,6 +101,14 @@
 {
   min-width: 27.8rem;
   background-image: none;
+}
+
+.new-uploaded-image
+{
+  max-width: 100%;
+  height: 20rem;
+  margin: 2rem;
+  object-fit: cover;
 }
 
 .create-new-post-disabled-btn

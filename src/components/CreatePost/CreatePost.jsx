@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import axios from "axios"
 import {
     BiImageAdd,
@@ -17,6 +17,7 @@ import {
     useToast
 } from "../../context/index"
 import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
+import { Image } from "cloudinary-react"
 import "./CreatePost.css"
 
 function CreatePost()
@@ -29,6 +30,8 @@ function CreatePost()
     const dispatch = useDispatch()
     const [inputTextareaPlaceholder, setInputTextareaPlaceholder] = useState("")
     const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)
+    const addFileInput = useRef(null)
+    const [ selectedFileUrl, setSelectedFileUrl ] = useState("")
     const {
         loggedInUserName,
         loggedInUserProfile
@@ -52,6 +55,24 @@ function CreatePost()
       }
     })
 
+    const uploadImage = async(file) => {
+      const formData = new FormData()
+      formData.append("file", file) 
+      formData.append("upload_preset", "h8cqncs0") 
+
+      let fileUploadedResponse = await axios.post(
+        "https://api.cloudinary.com/v1_1/dddfc84ni/image/upload",
+        formData
+      )
+
+      setSelectedFileUrl(fileUploadedResponse.data.url)
+
+    }
+
+    const addNewFile = () => {
+      addFileInput.current.click()
+    }
+
     const onEmojiClick = (event, emojiObject) => {
       setNewPostTextContent(prevState => prevState+emojiObject.emoji)
     }
@@ -69,7 +90,8 @@ function CreatePost()
                 let updatedDataResponse = await axios.post(
                     "https://socioztron.herokuapp.com/api/userpost",
                     {
-                      newPostTextContent
+                      newPostTextContent,
+                      selectedFileUrl
                     },
                     {
                       headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
@@ -80,6 +102,7 @@ function CreatePost()
                 {
                   dispatch(updateHomeFeed(updatedDataResponse.data.homefeed))
                   setNewPostTextContent("")
+                  setSelectedFileUrl("")
                   setPostCharCount(280)
                 }
             }
@@ -108,24 +131,51 @@ function CreatePost()
 
           <div className="create-new-post">
             <textarea className='whats-on-your-mind'  
-            cols="50" 
-            placeholder={`What's on your mind${inputTextareaPlaceholder}?`}
-            value={newPostTextContent}
-            onChange={event => {
-                setPostCharCount(280-event.target.value.length)
-                setNewPostTextContent(event.target.value)
-            }}>
-              
+              cols="50" 
+              placeholder={`What's on your mind${inputTextareaPlaceholder}?`}
+              value={newPostTextContent}
+              onChange={event => {
+                  setPostCharCount(280-event.target.value.length)
+                  setNewPostTextContent(event.target.value)
+              }}>
             </textarea>
 
+            {
+              selectedFileUrl!=="" &&
+              (
+                <Image
+                  className="new-uploaded-image"
+                  cloudName="dddfc84ni"
+                  publicId={selectedFileUrl}
+                />
+              )
+            }
+            
             <hr></hr>
             <div className="create-post-options-container">
               
               <div className="create-post-options">
-                  <div className="create-post-icons-container">
+                  <input
+                    type="file"
+                    style={{display:"none"}}
+                    ref={addFileInput}
+                    accept="image/jpeg,image/png,image/webp,
+                    image/gif"
+                    onChange={event=>{
+                      const file = event.target.files[0]
+                      uploadImage(file)
+                    }}
+                  />
+                  <div
+                    onClick={addNewFile} 
+                    className="create-post-icons-container"
+                  >
                     <BiImageAdd className="create-new-post-icons"/>
                   </div>
-                  <div className="create-post-icons-container">
+                  <div 
+                    onClick={addNewFile} 
+                    className="create-post-icons-container"
+                  >
                     <AiOutlineFileGif className="create-new-post-icons"/>
                   </div>
                   <div className="create-post-icons-container">
