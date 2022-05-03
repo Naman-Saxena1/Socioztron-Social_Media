@@ -46,6 +46,11 @@
     margin-top: 1rem;
 }
 
+.create-new-reply-container .avatar
+{
+    background-color: var(--pure-white);
+}
+
 .create-new-reply-input
 {
     min-height: fit-content;
@@ -101,6 +106,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+}
+
+.single-reply-container .avatar
+{
+    background-color: var(--pure-white);
 }
 
 .replies-container .single-reply-container .reply-container

@@ -17,6 +17,11 @@
     gap: 1rem;
 }
 
+.create-new-comment-container .avatar
+{
+    background-color: var(--pure-white);
+}
+
 .create-comment-input-and-send
 {
     flex: 1;
@@ -60,36 +65,6 @@
     max-height: 3.74rem;
 }
 
-.emoji-container
-{
-    position: relative;
-    padding: 5px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.emoji-container:hover
-{
-    background-color: var(--grey);
-}
-
-.emoji-picker-container
-{
-    position: absolute;
-    right: 1rem;
-}
-
-.emoji-container aside
-{
-  z-index: var(--zindex-emoji-picker);
-}
-
-.emoji-container aside nav
-{
-  min-width: 27.8rem;
-  background-image: none;
-}
-
 .icon-btn.send-reply-btn
 {
     width: fit-content;
@@ -119,6 +94,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+}
+
+.single-comment-container .avatar
+{
+    background-color: var(--pure-white);
 }
 
 .user-post-all-comments-container .single-comment-container .comment-container

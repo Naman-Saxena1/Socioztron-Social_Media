@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode"
 import {
@@ -39,13 +39,14 @@ function UserPost({userPostDetails})
     const {
         _id,
         contentText,
+        imgSrc,
         userName,
         userEmail,
         userProfilePic,
         noOfLikes
     } = userPostDetails;
 
-    const [ postUserProfile, setPostUserProfile] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
+    const [ postUserProfile, setPostUserProfile] = useState("https://api.iconify.design/ph:user-circle-thin.svg")
     const [ showFullText, setShowFullText ] = useState(false)
     const [ postLikeStatus, setPostLikeStatus ] = useState(false)
     const [ showPostComments, setShowPostComments ] = useState(false)
@@ -162,7 +163,16 @@ function UserPost({userPostDetails})
                         />
                         <span className="status-badge-x status-online"></span>
                     </div>
-                    <h3>{userName}</h3>
+                    <Link 
+                        to={`/profile/${userName}`} 
+                        state={{
+                            profileUserName: userName,
+                            profileUserEmail:userEmail,
+                            profileUserProfile: userProfilePic
+                        }}
+                    >
+                        <h3>{userName}</h3>
+                    </Link>
                 </div>
                 <button 
                     className="icon-btn userpost-more-options-btn"
@@ -238,9 +248,13 @@ function UserPost({userPostDetails})
                     <span>&nbsp;{postText2}</span>
                 }
             </p>
-            {/* <div className="post-img-container">
-                <img className="post-img" src="https://enztron-temp-deployed-branch.netlify.app/Icons-and-Images/List-Images/clifford-VobvKmG-StA-unsplash.jpg" alt="postImage"/>
-            </div> */}
+            {
+                imgSrc!=="" && (   
+                    <div className="post-img-container">
+                        <img className="post-img" src={imgSrc} alt="postImage"/>
+                    </div>
+                )
+            }
             <div className="post-stats">
                 <div className="post-stats-left-container">
                     <div className="user-post-icon-container">

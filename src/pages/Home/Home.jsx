@@ -1,10 +1,12 @@
 import { useState,useEffect } from "react"
 import axios from "axios"
+import jwt_decode from "jwt-decode"
 import { useSelector, useDispatch } from "react-redux"
 import {
     updateHomeFeed,
     updateAllUserLikedPosts,
-    getCreationSortedPosts
+    getCreationSortedPosts,
+    updateUserDetails
 } from "../../actions/index"
 import {
     useUserLogin
@@ -69,7 +71,7 @@ function Home()
                     {
                         trendingHomeFeed?
                         (
-                            homeFeed.filter(userPost=> userPost.noOfLikes>=2)
+                            homeFeed.filter(userPost=> userPost.noOfLikes>=3)
                             .map(userPostDetails => 
                                 <UserPost 
                                     key={userPostDetails._id} 
@@ -106,17 +108,23 @@ function Home()
 
                         <ActiveContacts
                             imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/640x426-image-avatar.jpg"
-                            contactName="Alexa"
-                        />
-
-                        <ActiveContacts
-                            imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
-                            contactName="Max"
+                            userName="Alexa"
+                            userEmail="newuser1@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/1920x1280-image-avatar.jpg"
                         />
 
                         <ActiveContacts
                             imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-andrea-piacquadio-3978586.jpg"
-                            contactName="Jane"
+                            userName="Jane"
+                            userEmail="newuser2@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-andrea-piacquadio-3978586.jpg"
+                        />
+
+                        <ActiveContacts
+                            imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
+                            userName="Max"
+                            userEmail="newuser3@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
                         />
 
                     </div>

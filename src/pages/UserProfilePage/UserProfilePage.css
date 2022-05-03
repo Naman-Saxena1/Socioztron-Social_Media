@@ -1,14 +1,146 @@
 .user-profile-page-container
 {
-    padding: 2rem 6rem;
+    padding: 0 6rem;
     min-height: calc(100vh - 107.23px);
     grid-column: 2/3;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
-    background-color: var(--background-color);
+}
+
+.user-profile-auth-lottie-container
+{
+    color: var(--pure-white);
+    grid-column: 2/3;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-grey);
+}
+
+.user-profile-content-container
+{
+    width: 98%;
+    height: fit-content;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.user-profile-background
+{
+    width: 100%;
+    height: 35rem;
+    object-fit: cover;
+}
+
+.user-profile-header
+{
+    width: 100%;
+    height: fit-content;
+    background-color: var(--pure-white);
+}
+
+.user-profile-header .main-user-details-container
+{
+    width: 100%;
+    height: 70%;
+    position: relative;
+    display: flex;
+    padding: 1.5rem 0;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.user-profile-page-user-pic
+{
+    position: absolute;
+    top: -6rem;
+    left: 4rem;
+    width: 16.8rem;
+    height: 16.8rem;
+    object-fit: cover;
+    background-color: var(--pure-white);
+    border: 8px solid var(--pure-white);
+    border-radius: 50%;
+}
+
+.user-profile-page-username
+{
+    margin: 0 0 0 23rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.follow-user-profile-btn
+{
+    margin: 0 0 0 23rem;
+    width: fit-content;
+    padding: 1.2rem;
+    height: fit-content;
+    font-family: Comfortaa;
+    color: var(--pink-color);
+    border: 1px solid var(--pink-color);
+    background-color: var(--pure-white);
+    border-radius: 2rem;
+}
+
+.follow-user-profile-btn-active
+{
+    color: var(--pure-white);
+    background-image: linear-gradient(
+        to right top, #ef836d, #e57871, 
+        #d96e74, #cc6576, #bd5d78);
+}
+
+
+.edit-user-profile-btn
+{
+    margin: 0 0 0 23rem;
+    width: fit-content;
+    padding: 1.2rem;
+    height: fit-content;
+    font-family: Comfortaa;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--pure-white);
+    border: 1px solid var(--pink-color);
+    background-image: linear-gradient(
+        to right top, #ef836d, #e57871, 
+        #d96e74, #cc6576, #bd5d78);
+    border-radius: 2rem;
+}
+
+.user-profile-bio, .user-portfolio-link
+{
+    padding: 1rem 5rem; 
+    text-align: left;
+}
+
+.user-portfolio-link
+{
+    width: fit-content;
+    margin: 1rem 0;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.user-portfolio-link-icon
+{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    margin-right: 7px;
+}
+
+.user-profile-content-container .home-feed-container
+{
+    padding: 5rem 0;
 }
 
 @media only screen and (max-width:83.4375em){

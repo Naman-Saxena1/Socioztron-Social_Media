@@ -15,7 +15,7 @@ import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import "./EditPostModal.css"
 
 const EditPostModal = () => {
-    const [ postUserProfile, setPostUserProfile] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
+    const [ postUserProfile, setPostUserProfile] = useState("https://api.iconify.design/ph:user-circle-thin.svg")
     const { 
         showEditModal, 
         setShowEditModal, 

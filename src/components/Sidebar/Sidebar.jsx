@@ -1,4 +1,5 @@
 import "./Sidebar.css"
+import { useSelector } from "react-redux"
 import {
     AiOutlineHome,
     AiOutlineUser,
@@ -12,6 +13,13 @@ function Sidebar()
 {
     let location = useLocation()
     let urlPath  = location.pathname
+
+    const userDetails = useSelector(state => state.userDetailsReducer)
+    const {
+        loggedInUserName,
+        loggedInUserEmail,
+        loggedInUserProfile
+    } = userDetails
 
     return (
         <div className="sidebar">
@@ -39,8 +47,15 @@ function Sidebar()
                     <p className="sidebar-options-text">Bookmarks</p>
                 </div>
             </Link>
-            <Link to="/profile">
-                <div className={urlPath==="/profile"?`sidebar-options active-sidebar-option`:`sidebar-options`}>
+            <Link 
+                to={`/profile/${loggedInUserName}`}
+                state={{
+                    profileUserName: loggedInUserName,
+                    profileUserEmail: loggedInUserEmail,
+                    profileUserProfile: loggedInUserProfile
+                }}
+            >
+                <div className={urlPath===`/profile/${loggedInUserName}`?`sidebar-options active-sidebar-option`:`sidebar-options`}>
                     <AiOutlineUser className="sidebar-options-icons"/>
                     <p className="sidebar-options-text">Profile</p>
                 </div>

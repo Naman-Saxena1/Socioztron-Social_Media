@@ -14,9 +14,9 @@
 {
     min-height: 100%;
     display: flex;
-    padding: 1rem 0;
+    padding: 1rem 0 25rem 0;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
     justify-content: flex-start;
     align-items: center;
 }
@@ -32,6 +32,11 @@
     display: flex;
     gap: 1rem;
     border: 1px solid var(--light-grey-2);
+}
+
+.create-new-post-container .avatar
+{
+    background-color: var(--pure-white);
 }
 
 .homefeed-controller-container

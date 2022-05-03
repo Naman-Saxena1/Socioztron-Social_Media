@@ -1,0 +1,195 @@
+.edit-profile-modal-container
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--zindex-edit-profile-modal);
+    display: flex;
+    align-items: center;
+    background-color: var(--modal-background);
+    overflow-y: scroll;
+}
+
+.edit-profile-modal
+{
+    position: relative;
+    margin: auto;
+    margin-top: 16rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: 0px 0px 10px -5px var(--dark-grey-2);
+    overflow-y: hidden;
+}
+
+.edit-profile-modal-header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.close-edit-modal-btn
+{
+    position: absolute;
+    right: 2rem;
+    background-color: var(--background-color);
+    min-width: fit-content;
+    min-height: fit-content;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-edit-modal-btn:hover
+{
+    background-color: var(--modal-background);
+}
+
+.close-edit-modal-btn-icon
+{
+    font-size: 25px;
+    color: var(--dark-grey);
+}
+
+.edit-profile-header-container
+{
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.edit-profile-header-container h3
+{
+    margin: 0 2rem;
+}
+
+.edit-user-profilepic-container
+{
+    margin: 2rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* background-color:aquamarine; */
+}
+
+.edit-profile-detail-header
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: bisque; */
+}
+
+.profile-edit-text
+{
+    cursor: pointer;
+    color: var(--sky-blue)
+}
+
+.file-inputs
+{
+    display: none;
+}
+
+.bio-header
+{
+    width: auto;
+    margin: 2rem;
+    margin-bottom: 0;
+}
+
+.edit-details-profile-pic
+{
+    width: 20rem;
+    height: 20rem;
+    margin-top: 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edit-details-background-pic
+{
+    width: 40rem;
+    height: 20rem;
+    margin-top: 1rem;
+    object-fit: cover;
+}
+
+.updated-profile-bio-container
+{
+    max-height: 28rem;
+    padding-left: 2rem;
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grey);
+    overflow-y: scroll;
+}
+
+.updated-profile-bio-container::-webkit-scrollbar, .updated-bio-content::-webkit-scrollbar
+{
+    width: 2rem;
+    height: 1em;
+}
+  
+.updated-profile-bio-container::-webkit-scrollbar-track, .updated-bio-content::-webkit-scrollbar-track 
+{
+    padding: 4px;
+    background: var(--white);
+}
+  
+.updated-profile-bio-container::-webkit-scrollbar-thumb, .updated-bio-content::-webkit-scrollbar-thumb
+{
+    background-color: var(--grey);
+    border: 5px solid transparent;
+    border-radius: 1.5rem;
+    background-clip: content-box;
+}
+
+.updated-bio-content
+{
+    text-align: left;
+    height: 12rem;
+    padding: 2rem 0;
+    resize: none;
+    outline: none;
+    border: none;
+    font-family: 'Comfortaa';
+    font-size: 16px;
+}
+
+.portfolio-link-input
+{
+    margin: 0 2rem 2rem 2rem;
+    padding: 1rem;
+    font-family: Comfortaa
+}
+
+.add-to-profile-options-container
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 2rem 1rem 2rem;
+    padding: 0 1rem;
+    gap: 1rem;
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+}
+
+.edit-profile-save-btn
+{
+    min-height: 3.92rem;
+    justify-self: flex-end;
+    margin: auto 2rem 2rem 2rem;
+}
