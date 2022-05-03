@@ -65,6 +65,7 @@
     width: 16.8rem;
     height: 16.8rem;
     object-fit: cover;
+    background-color: var(--pure-white);
     border: 8px solid var(--pure-white);
     border-radius: 50%;
 }

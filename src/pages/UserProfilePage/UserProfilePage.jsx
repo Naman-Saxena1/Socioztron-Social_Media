@@ -93,7 +93,7 @@ function UserProfilePage()
                                 <div className="main-user-details-container">
                                     <img 
                                         className="user-profile-page-user-pic"
-                                        src={profilePicSrc!==""?profilePicSrc:"https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"} 
+                                        src={profilePicSrc!==""?profilePicSrc:"https://api.iconify.design/ph:user-circle-thin.svg"} 
                                         alt="user profile pic">
                                     </img>
                                     <h1 

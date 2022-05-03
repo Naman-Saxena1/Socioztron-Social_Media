@@ -96,6 +96,11 @@
     color: var(--sky-blue)
 }
 
+.file-inputs
+{
+    display: none;
+}
+
 .bio-header
 {
     width: auto;

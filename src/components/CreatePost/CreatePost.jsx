@@ -123,7 +123,7 @@ function CreatePost()
                     <img className="avatar-img" src={loggedInUserProfile} alt="avatar"/>
                 ) 
                 : (
-                    <img className="avatar-img" src="https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg" alt="avatar"/>
+                    <img className="avatar-img" src="https://api.iconify.design/ph:user-circle-thin.svg" alt="avatar"/>
                 )
               }
               <span className="status-badge-2x status-online"></span>

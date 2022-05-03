@@ -45,7 +45,7 @@ function Navbar() {
                         dispatch(updateUserDetails({
                             loggedInUserName: user.name, 
                             loggedInUserEmail: user.email, 
-                            loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+                            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg"
                         }))
                     }
                     else
@@ -67,7 +67,7 @@ function Navbar() {
         dispatch(updateUserDetails({
             loggedInUserName: "", 
             loggedInUserEmail: "", 
-            loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg"
         }))
         dispatch(updateAllUserLikedPosts([]))
         localStorage.removeItem('socioztron-user-token')

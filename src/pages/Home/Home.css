@@ -34,6 +34,11 @@
     border: 1px solid var(--light-grey-2);
 }
 
+.create-new-post-container .avatar
+{
+    background-color: var(--pure-white);
+}
+
 .homefeed-controller-container
 {
     min-height: 5rem;

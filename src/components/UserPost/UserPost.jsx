@@ -46,7 +46,7 @@ function UserPost({userPostDetails})
         noOfLikes
     } = userPostDetails;
 
-    const [ postUserProfile, setPostUserProfile] = useState("https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg")
+    const [ postUserProfile, setPostUserProfile] = useState("https://api.iconify.design/ph:user-circle-thin.svg")
     const [ showFullText, setShowFullText ] = useState(false)
     const [ postLikeStatus, setPostLikeStatus ] = useState(false)
     const [ showPostComments, setShowPostComments ] = useState(false)

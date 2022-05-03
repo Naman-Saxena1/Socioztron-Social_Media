@@ -35,6 +35,11 @@
     padding: 0 1rem;
 }
 
+.post-header-left-container .avatar
+{
+    background-color: var(--pure-white);
+}
+
 .post-header-left-container h3
 {
     margin: 0 2rem;

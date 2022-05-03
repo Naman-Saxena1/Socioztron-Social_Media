@@ -135,7 +135,7 @@ const EditProfileModal = () => {
 
                 <input
                     type="file"
-                    style={{display:"none"}}
+                    className="file-inputs"
                     ref={addProfilePicFileInput}
                     accept="image/jpeg,image/png,image/webp,
                     image/gif"
@@ -166,8 +166,8 @@ const EditProfileModal = () => {
                         ): (
                             <img 
                                 className="edit-details-profile-pic" 
-                                src={userProfilePic!==""?userProfilePic:"https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"} 
-                                alt="user profile pic"
+                                src={userProfilePic!==""?userProfilePic:"https://api.iconify.design/ph:user-circle-thin.svg"} 
+                                alt="user profile"
                             >
                             </img>
                         )
@@ -176,7 +176,7 @@ const EditProfileModal = () => {
 
                 <input
                     type="file"
-                    style={{display:"none"}}
+                    className="file-inputs"
                     ref={addBackgroundPicFileInput}
                     accept="image/jpeg,image/png,image/webp,
                     image/gif"
@@ -252,7 +252,7 @@ const EditProfileModal = () => {
 
                 <div className="edit-user-profilepic-container">
                     <div className="edit-profile-detail-header">
-                        <h3>Portfolio Link</h3>
+                        <h3>Update Portfolio Link</h3>
                     </div>
                 </div>
                 <input 

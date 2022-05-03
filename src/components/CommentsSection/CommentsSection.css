@@ -17,6 +17,11 @@
     gap: 1rem;
 }
 
+.create-new-comment-container .avatar
+{
+    background-color: var(--pure-white);
+}
+
 .create-comment-input-and-send
 {
     flex: 1;
@@ -89,6 +94,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+}
+
+.single-comment-container .avatar
+{
+    background-color: var(--pure-white);
 }
 
 .user-post-all-comments-container .single-comment-container .comment-container

@@ -82,7 +82,6 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
                     </ul>
                 </div>  
             </div>
-
             <div className="replies-container">
                 {
                     allRepliesOnComment.length!==0 && (
@@ -91,7 +90,7 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
                                 <div className="avatar avatar-x-small">
                                     <img 
                                         className="avatar-img" 
-                                        src={replyDetails.replyUserProfilePic} 
+                                        src={replyDetails.replyUserProfilePic!==""?replyDetails.replyUserProfilePic:"https://api.iconify.design/ph:user-circle-thin.svg"} 
                                         alt="avatar"
                                     />
                                 </div>
