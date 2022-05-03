@@ -2,7 +2,7 @@ const userDetailsReducer = (
     state = {
         loggedInUserName: "",
         loggedInUserEmail: "", 
-        loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+        loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"        
     }, 
     {type,payload}
 ) => {

@@ -5,11 +5,18 @@ import {
     homeFeedReducer,
     exploreFeedReducer,
     userDetailsReducer,
-    allLikedPostsReducer
+    allLikedPostsReducer,
+    currentProfilePageReducer
 } from "./reducers/index"
 
 export default createStore(
-    combineReducers({homeFeedReducer, exploreFeedReducer, userDetailsReducer, allLikedPostsReducer}),
+    combineReducers({
+        homeFeedReducer, 
+        exploreFeedReducer, 
+        userDetailsReducer, 
+        allLikedPostsReducer,
+        currentProfilePageReducer
+    }),
     {},
     applyMiddleware(thunk)
 )

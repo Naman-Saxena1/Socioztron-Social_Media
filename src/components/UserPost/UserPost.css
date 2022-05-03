@@ -1,6 +1,7 @@
 .user-post
 {
     position: relative;
+    box-shadow: 0 0 0px 1px var(--light-grey);
 }
 
 .user-post hr

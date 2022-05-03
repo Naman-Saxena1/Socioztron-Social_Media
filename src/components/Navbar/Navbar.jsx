@@ -10,7 +10,8 @@ import { useUserLogin, useToast } from "../../context/index"
 import {
     refreshHomeFeed,
     updateAllUserLikedPosts,
-    updateUserDetails
+    updateUserDetails,
+    updateCurrentProfile
 } from "../../actions/index"
 import {
     useEditModal
@@ -31,7 +32,6 @@ function Navbar() {
         if(token)
         {
             const user = jwt_decode(token)
-            
             if(!user)
             {
                 localStorage.removeItem('socioztron-user-token')
@@ -39,25 +39,25 @@ function Navbar() {
             }
             else
             {
-                let loggedInUserDetails = jwt_decode(localStorage.getItem('socioztron-user-token'))
-                
-                if(""===loggedInUserDetails.userProfilePic)
-                {
-                    dispatch(updateUserDetails({
-                        loggedInUserName: loggedInUserDetails.name, 
-                        loggedInUserEmail: loggedInUserDetails.email, 
-                        loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
-                    }))
-                }
-                else
-                {
-                    dispatch(updateUserDetails({
-                        loggedInUserName: loggedInUserDetails.name, 
-                        loggedInUserEmail: loggedInUserDetails.email, 
-                        loggedInUserProfile: loggedInUserDetails.userProfilePic
-                    }))
-                }
-                setUserLoggedIn(true)
+                (async()=>{
+                    if(""===user.userProfilePic)
+                    {
+                        dispatch(updateUserDetails({
+                            loggedInUserName: user.name, 
+                            loggedInUserEmail: user.email, 
+                            loggedInUserProfile: "https://enztron-dev-branch.netlify.app/Icons-and-Images/Avatars/blue-illustration-avatar.svg"
+                        }))
+                    }
+                    else
+                    {
+                        dispatch(updateUserDetails({
+                            loggedInUserName: user.name, 
+                            loggedInUserEmail: user.email, 
+                            loggedInUserProfile: user.userProfilePic
+                        }))
+                    }
+                    setUserLoggedIn(true)
+                })()   
             }
         }
     },[userLoggedIn])
@@ -75,6 +75,21 @@ function Navbar() {
         localStorage.clear()
         dispatch(refreshHomeFeed())
         setShowEditModal(false)
+        dispatch(updateCurrentProfile({
+            allPosts: [],
+            bookmarks: [],
+            email: "",
+            following: [],
+            likedPosts: [],
+            messages: [],
+            name: "",
+            password: "",
+            portfolioLink: "",
+            profileBackgroundSrc: "",
+            profilePicSrc: "",
+            userBio: "",
+            userDob: "",
+        }))
         showToast("success","Logged out successfully")
     }
     

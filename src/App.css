@@ -20,6 +20,7 @@
     --zindex-emoji-picker : 5; 
     --zindex-homefeed-sort-dropdown: 6;
     --zindex-edit-post-modal: 8;
+    --zindex-edit-profile-modal: 8,
     --zindex-toast  : 10;
     --zindex-navbar : 15;
 }
@@ -27,6 +28,7 @@
 html
 {
     font-family: 'Comfortaa', cursive;
+    background-color: var(--background-color);
 }
 
 body
@@ -104,4 +106,38 @@ hr
 .status-badge-x
 {
     box-shadow: 0 0 0 2px var(--pure-white);
+}
+
+.emoji-container
+{
+    position: relative;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.emoji-container:hover
+{
+    background-color: var(--grey);
+}
+
+.emoji-picker-container
+{
+    position: absolute;
+    right: 1rem;
+}
+
+.emoji-container svg
+{
+    font-size: 2rem;
+}
+.emoji-container aside
+{
+  z-index: var(--zindex-emoji-picker);
+}
+
+.emoji-container aside nav
+{
+  min-width: 27.8rem;
+  background-image: none;
 }

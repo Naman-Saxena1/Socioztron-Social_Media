@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode"
 import {
@@ -163,7 +163,16 @@ function UserPost({userPostDetails})
                         />
                         <span className="status-badge-x status-online"></span>
                     </div>
-                    <h3>{userName}</h3>
+                    <Link 
+                        to={`/profile/${userName}`} 
+                        state={{
+                            profileUserName: userName,
+                            profileUserEmail:userEmail,
+                            profileUserProfile: userProfilePic
+                        }}
+                    >
+                        <h3>{userName}</h3>
+                    </Link>
                 </div>
                 <button 
                     className="icon-btn userpost-more-options-btn"
