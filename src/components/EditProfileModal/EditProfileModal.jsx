@@ -40,6 +40,7 @@ const EditProfileModal = () => {
     const [ updatedPortfolioLink, setUpdatedPortfolioLink ] = useState(userPortfolioLink)
 
     const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)
+    
     const dispatch = useDispatch()
 
     const onEmojiClick = (event, emojiObject) => {
@@ -112,7 +113,8 @@ const EditProfileModal = () => {
             dispatch(updateUserDetails({
                 loggedInUserName: responseProfileDetails.name,
                 loggedInUserEmail: responseProfileDetails.email, 
-                loggedInUserProfile: responseProfileDetails.profilePicSrc
+                loggedInUserProfile: responseProfileDetails.profilePicSrc,
+                loggedInUserFollowing: responseProfileDetails.following
             }))
             setShowEditProfileModal(false)
         }
@@ -226,7 +228,7 @@ const EditProfileModal = () => {
                 </div>
 
                 <div className="add-to-profile-options-container">
-                    <p>Add to your profile bio</p>
+                    <p>Add emoji to your profile bio</p>
                     <div 
                         className="emoji-container"
                         onClick={()=>setShowEmojiPicker(prevState => !prevState)}

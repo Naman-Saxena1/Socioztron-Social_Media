@@ -38,11 +38,11 @@ function Login()
             {
                 localStorage.setItem('socioztron-user-token',res.data.user)
                 let loggedInUserDetails = jwt_decode(res.data.user)
-                console.log(loggedInUserDetails)
                 dispatch(updateUserDetails({
                     loggedInUserName: loggedInUserDetails.name, 
                     loggedInUserEmail: loggedInUserDetails.email, 
-                    loggedInUserProfile: loggedInUserDetails.userProfilePic
+                    loggedInUserProfile: loggedInUserDetails.userProfilePic,
+                    loggedInUserFollowing: res.data.userDetails.following
                 }))
                 showToast("success","Logged in successfully")
                 setUserLoggedIn(true)

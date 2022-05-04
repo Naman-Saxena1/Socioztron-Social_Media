@@ -19,7 +19,8 @@ export {
 
 export {
     BsEmojiSmile,
-    BsBookmark
+    BsBookmark,
+    BsBookmarkFill
 } from "react-icons/bs"
 
 export {

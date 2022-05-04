@@ -5,4 +5,11 @@ const updateUserDetails = (updatedUserDetails) => {
     }
 }
 
-export { updateUserDetails }
+const updateUserFollowingList = (updatedUserFollowing) => {
+    return {
+        type: "UPDATE_USER_FOLLOWING_LIST",
+        payload: updatedUserFollowing
+    }
+}
+
+export { updateUserDetails, updateUserFollowingList }

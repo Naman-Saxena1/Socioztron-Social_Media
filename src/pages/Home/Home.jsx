@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react"
 import axios from "axios"
 import jwt_decode from "jwt-decode"
+import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import {
     updateHomeFeed,
@@ -24,10 +25,20 @@ import './Home.css'
 function Home()
 {
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
+    const userDetails = useSelector(state => state.userDetailsReducer)
+    const {
+        loggedInUserFollowing
+    } = userDetails
+
     const dispatch = useDispatch()
     const { userLoggedIn } = useUserLogin()
     const [ trendingHomeFeed, setTrendingHomeFeed ] = useState(false)
     const [ sortByHomeFeed, setSortByHomeFeed ] = useState("Latest")
+
+    const { pathname } = useLocation()
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
 
     useEffect(()=>{
         (async ()=>{
@@ -67,29 +78,52 @@ function Home()
                         sortByHomeFeed={sortByHomeFeed} 
                         setSortByHomeFeed={setSortByHomeFeed} 
                     />
-                    
+
                     {
-                        trendingHomeFeed?
-                        (
-                            homeFeed.filter(userPost=> userPost.noOfLikes>=3)
-                            .map(userPostDetails => 
-                                <UserPost 
-                                    key={userPostDetails._id} 
-                                    userPostDetails={userPostDetails}
-                                />
+                        userLoggedIn ? (
+                            trendingHomeFeed?
+                            (
+                                homeFeed.filter(userPost=> userPost.noOfLikes>=3&&loggedInUserFollowing.includes(userPost.userEmail) )
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
                             )
-                        )
-                        :
-                        (
-                            homeFeed.map(userPostDetails => 
-                                <UserPost 
-                                    key={userPostDetails._id} 
-                                    userPostDetails={userPostDetails}
-                                />
+                            :
+                            (
+                                homeFeed.filter(userPost=> loggedInUserFollowing.includes(userPost.userEmail) )
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
+                            )
+                        ): (
+                            trendingHomeFeed?
+                            (
+                                homeFeed.filter(userPost=> userPost.noOfLikes>=3)
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
+                            )
+                            :
+                            (
+                                homeFeed
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
                             )
                         )
                     }
-
                 </div>
 
                 <div className='home-suggestion-container'>
@@ -103,7 +137,7 @@ function Home()
                     </div>
 
                     <div className='active-contacts-container'>
-                        <h3>Active Contacts</h3>
+                        <h3>Active Users</h3>
                         <hr></hr>
 
                         <ActiveContacts

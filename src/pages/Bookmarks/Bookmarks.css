@@ -2,10 +2,12 @@
 {
     padding: 2rem 6rem;
     min-height: calc(100vh - 107.23px);
+    height: fit-content;
     grid-column: 2/3;
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
     background-color: var(--background-color);
