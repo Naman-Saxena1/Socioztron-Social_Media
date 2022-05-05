@@ -3,13 +3,25 @@ body
     height: 100vh;
 }
 
+.user-auth-page
+{
+    width: 100%;
+    min-height: calc(100vh - 107.23px);
+    background-image: url("../../assets/illustrations/auth-background.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+}
+
 .user-auth-content-container
 {
-    /* max-height: fit-content; */
     min-height: 110%;
     width: fit-content;
     padding: 2rem;
-    margin: auto;
+    margin-left: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -30,11 +42,25 @@ body
     outline: none;
 }
 
+#user-auth-input-password
+{
+    flex-grow: 1;
+}
+
 .user-options-container
 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.password-field-container
+{
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--pure-white);
 }
 
 .remember-me-container
@@ -97,4 +123,25 @@ body
     font-size: 1.6rem;
     width: fit-content;
     text-align: center;
+}
+
+@media only screen and (max-width:83.4375em){
+    .user-auth-page
+    {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width:72.5em){
+    .user-auth-content-container
+    {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width:63.4375em){
+    .user-auth-page
+    {
+        min-height: calc(100vh - 157.23px);
+    }
 }

@@ -3,19 +3,19 @@ import thunk from "redux-thunk"
 import promise from "redux-promise-middleware"
 import {
     homeFeedReducer,
-    exploreFeedReducer,
     userDetailsReducer,
     allLikedPostsReducer,
-    currentProfilePageReducer
+    currentProfilePageReducer,
+    userBookmarksReducer
 } from "./reducers/index"
 
 export default createStore(
     combineReducers({
         homeFeedReducer, 
-        exploreFeedReducer, 
         userDetailsReducer, 
         allLikedPostsReducer,
-        currentProfilePageReducer
+        currentProfilePageReducer,
+        userBookmarksReducer
     }),
     {},
     applyMiddleware(thunk)

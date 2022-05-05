@@ -5,10 +5,17 @@
     grid-column: 2/3;
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
-    background-color: var(--background-color);
+    color: var(--pure-white);
+    background-color: var(--dark-grey);
+}
+
+.messages-page-container svg
+{
+    height: 400px;
 }
 
 @media only screen and (max-width:83.4375em){

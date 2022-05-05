@@ -50,6 +50,12 @@
     border: 1px solid var(--light-grey-2);
 }
 
+.starting-following-suggestion-header
+{
+    /* width: 60rem; */
+    /* background-color: var(--pure-white); */
+}
+
 .user-post
 {
     height: fit-content;

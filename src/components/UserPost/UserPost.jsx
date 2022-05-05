@@ -10,7 +10,8 @@ import {
     RiShareForwardLine,
     HiOutlinePencilAlt,
     HiOutlineTrash,
-    BsBookmark
+    BsBookmark,
+    BsBookmarkFill
 } from "../../assets/react-icons"
 import {
     useUserLogin,
@@ -19,7 +20,8 @@ import {
 } from "../../context/index"
 import {
     updateHomeFeed,
-    updateAllUserLikedPosts
+    updateAllUserLikedPosts,
+    updateUserBookmarks
 } from "../../actions/index"
 import {
     CommentsSection
@@ -30,6 +32,7 @@ function UserPost({userPostDetails})
 {
     const allUserLikedPosts = useSelector(state => state.allLikedPostsReducer)
     const loggedInUserDetails = useSelector(state => state.userDetailsReducer)
+    const loggedInUserBookmarks = useSelector(state => state.userBookmarksReducer)
     const { userLoggedIn } = useUserLogin()
     const { showToast } = useToast()
     const { setShowEditModal, setEditPostDetails} = useEditModal()
@@ -151,6 +154,21 @@ function UserPost({userPostDetails})
         }
     }
 
+    const bookmarkUserPostHandler = async() => {
+        let bookmarkPostResponse = await axios.patch(
+            `https://socioztron.herokuapp.com/api/userpost/bookmark/${_id}`,
+            {},
+            {
+                headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
+            }
+        )
+
+        if(bookmarkPostResponse.data.status==="ok")
+        {
+            dispatch(updateUserBookmarks(bookmarkPostResponse.data.updatedUserInfo.bookmarks))
+        }
+    }
+
     return (
         <div className='user-post'>
             <div className="user-post-header">
@@ -188,12 +206,28 @@ function UserPost({userPostDetails})
                             className="post-more-options"
                             onClick={()=>{
                                 userLoginCheckHandler(()=>{
-                                    console.log("Bookmark this post!")    
+                                    bookmarkUserPostHandler()    
                                 })         
                             }}
                         >
-                            <BsBookmark className="post-more-options-icons"/>
-                            <p>Bookmark Post</p>
+                            {
+                                loggedInUserBookmarks.includes(_id) 
+                                ? (
+                                    <>
+                                        <BsBookmarkFill className="post-more-options-icons"/>
+                                        <p>
+                                            Remove Bookmark
+                                        </p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <BsBookmark className="post-more-options-icons"/>
+                                        <p>
+                                            Bookmark
+                                        </p>
+                                    </>
+                                )
+                            }
                         </div>
                         {
                             allowPostOwnerOptions && (

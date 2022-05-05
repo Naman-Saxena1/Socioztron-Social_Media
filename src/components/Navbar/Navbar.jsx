@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
 import jwt_decode from "jwt-decode";
 import { 
@@ -20,6 +20,10 @@ import './Navbar.css'
 
 function Navbar() {
 
+    const userDetails = useSelector(state => state.userDetailsReducer)
+    const {
+        loggedInUserFollowing
+    } = userDetails
     const dispatch = useDispatch()
     const location = useLocation()
 
@@ -45,7 +49,8 @@ function Navbar() {
                         dispatch(updateUserDetails({
                             loggedInUserName: user.name, 
                             loggedInUserEmail: user.email, 
-                            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg"
+                            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg",
+                            loggedInUserFollowing: loggedInUserFollowing
                         }))
                     }
                     else
@@ -53,7 +58,8 @@ function Navbar() {
                         dispatch(updateUserDetails({
                             loggedInUserName: user.name, 
                             loggedInUserEmail: user.email, 
-                            loggedInUserProfile: user.userProfilePic
+                            loggedInUserProfile: user.userProfilePic,
+                            loggedInUserFollowing: loggedInUserFollowing
                         }))
                     }
                     setUserLoggedIn(true)
@@ -67,7 +73,8 @@ function Navbar() {
         dispatch(updateUserDetails({
             loggedInUserName: "", 
             loggedInUserEmail: "", 
-            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg"
+            loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg",
+            loggedInUserFollowing: []
         }))
         dispatch(updateAllUserLikedPosts([]))
         localStorage.removeItem('socioztron-user-token')

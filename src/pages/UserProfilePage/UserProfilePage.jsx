@@ -12,7 +12,8 @@ import {
     useEditProfileModal
 } from "../../context/index"
 import {
-    updateCurrentProfile
+    updateCurrentProfile,
+    updateUserFollowingList
 } from "../../actions/index"
 import {
     HiOutlinePencilAlt,
@@ -35,15 +36,16 @@ function UserProfilePage()
     } = useEditProfileModal()
 
     const {
-        loggedInUserEmail
+        loggedInUserEmail,
+        loggedInUserFollowing
     } = userDetails
     const dispatch = useDispatch()
-    const location = useLocation()
+    const { state, pathname } = useLocation()
     const {
         profileUserName,
         profileUserEmail,
         profileUserProfile 
-    }= location.state
+    }= state
 
     const userProfileDetails = useSelector(state=>state.currentProfilePageReducer)
 
@@ -60,6 +62,10 @@ function UserProfilePage()
         animationData: loginLottie,
         rendererSettings: {preserveAspectRatio: 'xMidYMid slice'}
     }
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
 
     useEffect(()=>{
 
@@ -75,7 +81,32 @@ function UserProfilePage()
 
         })()
 
-    },[location.state])
+    },[state])
+    
+    useEffect(()=>{
+        if(loggedInUserFollowing!==undefined && loggedInUserFollowing.includes(profileUserEmail))
+        {
+            setIsUserFollowed(true)
+        }
+    },[profileUserEmail, loggedInUserFollowing])
+
+    const updateUserFollowing = async() => {
+        let updatedUserFollowingListResponse = await axios.patch(
+            `https://socioztron.herokuapp.com/api/user/following`,
+            {
+                profileUserEmail
+            },
+            {
+                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
+            }
+        )
+
+        if(updatedUserFollowingListResponse.data.status==="ok")
+        {
+            dispatch(updateUserFollowingList(updatedUserFollowingListResponse.data.updatedUserFollowingList))
+            setIsUserFollowed(prevState=>!prevState)
+        }
+    }
 
     return (
         <div className='page-container'>
@@ -124,7 +155,9 @@ function UserProfilePage()
                                         (
                                             <button 
                                                 className={isUserFollowed?`follow-user-profile-btn`:`follow-user-profile-btn follow-user-profile-btn-active`}
-                                                onClick={()=>setIsUserFollowed(prevState=>!prevState)}
+                                                onClick={()=>{
+                                                    updateUserFollowing()
+                                                }}
                                             >
                                                 {isUserFollowed?"Following":"Follow"}
                                             </button>

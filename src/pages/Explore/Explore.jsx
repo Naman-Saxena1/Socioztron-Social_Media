@@ -1,3 +1,6 @@
+import { useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { 
     Sidebar,
     UserPost,
@@ -8,14 +11,27 @@ import './Explore.css'
 
 function Explore()
 {
-    //This is just temporary template layout, kindly ignore it while reviewing
+    const homeFeed = useSelector((state)=> state.homeFeedReducer)
+
+    const { pathname } = useLocation()
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
         <div className='page-container'>
             <Sidebar/>
             <div className='explore-page-container'>
                 <div className='explore-feed-container'>
-                    
-
+                    {
+                        homeFeed
+                        .map(userPostDetails => 
+                            <UserPost 
+                                key={userPostDetails._id} 
+                                userPostDetails={userPostDetails}
+                            />
+                        )
+                    }
                 </div>
 
                 <div className='explore-suggestion-container'>
@@ -29,22 +45,28 @@ function Explore()
                     </div>
 
                     <div className='active-contacts-container'>
-                        <h3>Active Contacts</h3>
+                        <h3>Active Users</h3>
                         <hr></hr>
 
                         <ActiveContacts
                             imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/640x426-image-avatar.jpg"
-                            contactName="Alexa"
-                        />
-
-                        <ActiveContacts
-                            imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
-                            contactName="Max"
+                            userName="Alexa"
+                            userEmail="newuser1@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/1920x1280-image-avatar.jpg"
                         />
 
                         <ActiveContacts
                             imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-andrea-piacquadio-3978586.jpg"
-                            contactName="Jane"
+                            userName="Jane"
+                            userEmail="newuser2@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-andrea-piacquadio-3978586.jpg"
+                        />
+
+                        <ActiveContacts
+                            imgSrc="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
+                            userName="Max"
+                            userEmail="newuser3@gmail.com"
+                            userProfilePic="https://raw.githubusercontent.com/Naman-Saxena1/Enztron-Component_Library/development/Icons-and-Images/Avatars/pexels-burst-374044.jpg"
                         />
 
                     </div>

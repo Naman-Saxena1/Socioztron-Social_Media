@@ -1,12 +1,14 @@
 import { useState,useEffect } from "react"
 import axios from "axios"
 import jwt_decode from "jwt-decode"
+import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import Lottie from "react-lottie"
 import {
     updateHomeFeed,
     updateAllUserLikedPosts,
     getCreationSortedPosts,
-    updateUserDetails
+    updateUserFollowingList
 } from "../../actions/index"
 import {
     useUserLogin
@@ -20,14 +22,35 @@ import {
     HomeFeedContentController
 } from '../../components'
 import './Home.css'
+import LoadingLottie from "../../assets/lottie/loading-0.json"
 
 function Home()
 {
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
+    const userDetails = useSelector(state => state.userDetailsReducer)
+    const {
+        loggedInUserEmail,
+        loggedInUserFollowing
+    } = userDetails
+
+    const loadingObj = {
+      loop: true,
+      autoplay: true,
+      animationData : LoadingLottie,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    }
+
     const dispatch = useDispatch()
     const { userLoggedIn } = useUserLogin()
     const [ trendingHomeFeed, setTrendingHomeFeed ] = useState(false)
     const [ sortByHomeFeed, setSortByHomeFeed ] = useState("Latest")
+
+    const { pathname } = useLocation()
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
 
     useEffect(()=>{
         (async ()=>{
@@ -48,11 +71,29 @@ function Home()
             dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
         })()
 
-    },[userLoggedIn])
+    },[userLoggedIn, loggedInUserFollowing])
 
     useEffect(()=>{
         dispatch(getCreationSortedPosts())
     },[sortByHomeFeed])
+
+    useEffect(()=>{
+        if(userLoggedIn && loggedInUserFollowing.length===0)
+        {
+            (async ()=>{
+                let loggedInUserResponse = await axios.get(
+                        `https://socioztron.herokuapp.com/api/user/${loggedInUserEmail}`,
+                        { 
+                            headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
+                        }
+                )
+
+                let loggedInUserDetails =  loggedInUserResponse.data.allUserDetails
+                dispatch(updateUserFollowingList(loggedInUserDetails.following))
+
+            })()
+        }
+    })
 
     return (
         <div className='page-container'>
@@ -67,29 +108,70 @@ function Home()
                         sortByHomeFeed={sortByHomeFeed} 
                         setSortByHomeFeed={setSortByHomeFeed} 
                     />
-                    
+
                     {
-                        trendingHomeFeed?
+                        userLoggedIn && loggedInUserFollowing &&
+                        (loggedInUserFollowing.length===1||loggedInUserFollowing.length===0) &&
                         (
-                            homeFeed.filter(userPost=> userPost.noOfLikes>=3)
-                            .map(userPostDetails => 
-                                <UserPost 
-                                    key={userPostDetails._id} 
-                                    userPostDetails={userPostDetails}
-                                />
-                            )
+                            <h3 className="starting-following-suggestion-header">
+                                Starting following other users to view more content
+                            </h3>
                         )
-                        :
-                        (
-                            homeFeed.map(userPostDetails => 
-                                <UserPost 
-                                    key={userPostDetails._id} 
-                                    userPostDetails={userPostDetails}
-                                />
+                    }
+                    {
+                        homeFeed.length===0 &&
+                        <Lottie options={loadingObj}
+                            height={380}
+                            style={{ margin: "auto"}}
+                            isStopped={false}
+                            isPaused={false}
+                        />
+                    }
+                    {
+                        userLoggedIn ? (
+                            trendingHomeFeed?
+                            (
+                                homeFeed.filter(userPost=> userPost.noOfLikes>=3&&loggedInUserFollowing.includes(userPost.userEmail) )
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
+                            )
+                            :
+                            (
+                                homeFeed.filter(userPost=> loggedInUserFollowing.includes(userPost.userEmail) )
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
+                            )
+                        ): (
+                            trendingHomeFeed?
+                            (
+                                homeFeed.filter(userPost=> userPost.noOfLikes>=3)
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
+                            )
+                            :
+                            (
+                                homeFeed
+                                .map(userPostDetails => 
+                                    <UserPost 
+                                        key={userPostDetails._id} 
+                                        userPostDetails={userPostDetails}
+                                    />
+                                )
                             )
                         )
                     }
-
                 </div>
 
                 <div className='home-suggestion-container'>
@@ -103,7 +185,7 @@ function Home()
                     </div>
 
                     <div className='active-contacts-container'>
-                        <h3>Active Contacts</h3>
+                        <h3>Active Users</h3>
                         <hr></hr>
 
                         <ActiveContacts

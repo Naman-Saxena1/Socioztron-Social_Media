@@ -3,6 +3,10 @@ import "./UserAuth.css"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useToast } from "../../context/index"
+import {
+    AiOutlineEye,
+    AiOutlineEyeInvisible
+} from "../../assets/react-icons"
 
 function Signup()
 {
@@ -12,8 +16,21 @@ function Signup()
     const [newUserName     , setNewUserName]     = useState('')
     const [newUserEmail    , setNewUserEmail]    = useState('')
     const [newUserPassword , setNewUserPassword] = useState('')
+    const [newPasswordType, setNewPasswordType] = useState('password')
 
     const navigate = useNavigate()
+
+    function toggleNewPasswordAppearance()
+    {
+      if(newPasswordType==="password")
+      {
+        setNewPasswordType("text")
+      }
+      else
+      {
+        setNewPasswordType("password")
+      }
+    }
 
     function signupUser(event)
     {
@@ -44,6 +61,7 @@ function Signup()
     }
 
     return (
+        <div className="user-auth-page">
         <div className="user-auth-content-container">
             <form onSubmit={signupUser} className="user-auth-form">
                 <h2>Signup</h2>
@@ -57,7 +75,8 @@ function Signup()
                         placeholder="Name" 
                         value={newUserName}
                         onChange={(event)=>setNewUserName(event.target.value)}
-                        required/>
+                        required
+                    />
                 </div>
                 
                 <div className="user-auth-input-container">
@@ -69,19 +88,29 @@ function Signup()
                         placeholder="Email" 
                         value={newUserEmail}
                         onChange={(event)=>setNewUserEmail(event.target.value)}
-                        required/>
+                        required
+                    />
                 </div>
 
                 <div className="user-auth-input-container">
                     <label htmlFor="user-auth-input-password"><h4>Password</h4></label>
-                    <input 
-                        id="user-auth-input-password" 
-                        className="user-auth-form-input" 
-                        type="password" 
-                        placeholder="Password" 
-                        value={newUserPassword}
-                        onChange={(event)=>setNewUserPassword(event.target.value)}
-                        required/>
+                    <div className="password-field-container">
+                        <input 
+                            id="user-auth-input-password" 
+                            className="user-auth-form-input" 
+                            type={newPasswordType} 
+                            placeholder="Password" 
+                            value={newUserPassword}
+                            onChange={(event)=>setNewUserPassword(event.target.value)}
+                            required
+                        />
+                        {
+                            (newPasswordType==="text") ?
+                            (<AiOutlineEye onClick={toggleNewPasswordAppearance} size="2em" style={{cursor:'pointer'}}/>)
+                            :
+                            (<AiOutlineEyeInvisible onClick={toggleNewPasswordAppearance} size="2em" style={{cursor:'pointer'}}/>)
+                        }
+                    </div>
                 </div>
 
                 <div className="accept-terms-container">
@@ -109,6 +138,7 @@ function Signup()
                 </div>
 
             </form>
+        </div>
         </div>
     )
 }

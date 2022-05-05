@@ -2,13 +2,32 @@
 {
     padding: 2rem 6rem;
     min-height: calc(100vh - 107.23px);
+    height: fit-content;
     grid-column: 2/3;
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
     background-color: var(--background-color);
+}
+
+.no-bookmarks-container
+{
+    padding-top: 0;
+    color: var(--pure-white);
+    background-color: var(--dark-grey);
+}
+
+.no-bookmarks-container svg
+{
+    height: 400px;
+}
+
+.no-bookmarks-header
+{
+    margin-top: 4rem;
 }
 
 @media only screen and (max-width:83.4375em){
