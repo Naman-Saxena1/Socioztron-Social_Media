@@ -1,4 +1,4 @@
-# Full Stack Social Project using MERN + Redux
+# Full Stack Social Media using MERN + Redux
 
 Live Link - [Socioztron](https://socioztron-dev-branch.netlify.app/)
 
