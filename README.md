@@ -41,9 +41,9 @@ You may also see any lint errors in the console.
    - User Bio
    - Portfolio URL
 7. Edit Logged in User Profile
-8. Follow/Unfollow to control content you want to see on Home feed
+8. Follow/Unfollow users to control content you want to see on Home feed
 9. Explore Feed
-   - To explore content, even from people you don't follow
+   - To explore content by users, even from people you don't follow
 10. Bookmark Post
 
 ## You are welcome to contribute to this project 
