@@ -5,7 +5,9 @@ export {
     AiOutlineFileGif,
     AiFillLike,
     AiOutlineLike,
-    AiOutlineSend
+    AiOutlineSend,
+    AiOutlineEye,
+    AiOutlineEyeInvisible
 } from "react-icons/ai"
 
 export {

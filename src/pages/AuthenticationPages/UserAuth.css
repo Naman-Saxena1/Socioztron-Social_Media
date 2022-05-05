@@ -42,11 +42,25 @@ body
     outline: none;
 }
 
+#user-auth-input-password
+{
+    flex-grow: 1;
+}
+
 .user-options-container
 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.password-field-container
+{
+    padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--pure-white);
 }
 
 .remember-me-container

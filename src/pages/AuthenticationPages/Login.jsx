@@ -10,6 +10,10 @@ import {
     useToast, 
     useUserLogin
 } from "../../context/index"
+import {
+    AiOutlineEye,
+    AiOutlineEyeInvisible
+} from "../../assets/react-icons"
 import "./UserAuth.css"
 
 function Login()
@@ -20,8 +24,21 @@ function Login()
 
     const [userEmail    , setUserEmail]    = useState('')
     const [userPassword , setUserPassword] = useState('')
+    const [newPasswordType, setNewPasswordType] = useState('password')
 
     const navigate = useNavigate()
+
+    function toggleNewPasswordAppearance()
+    {
+      if(newPasswordType==="password")
+      {
+        setNewPasswordType("text")
+      }
+      else
+      {
+        setNewPasswordType("password")
+      }
+    }
 
     function loginUser(event)
     {
@@ -78,14 +95,23 @@ function Login()
 
                 <div className="user-auth-input-container">
                     <label htmlFor="user-auth-input-password"><h4>Password</h4></label>
-                    <input 
-                        id="user-auth-input-password" 
-                        className="user-auth-form-input" 
-                        type="password" 
-                        placeholder="Password" 
-                        value={userPassword}
-                        onChange={(event)=>setUserPassword(event.target.value)}
-                        required/>
+                    <div className="password-field-container">
+                        <input 
+                            id="user-auth-input-password" 
+                            className="user-auth-form-input" 
+                            type={newPasswordType} 
+                            placeholder="Password" 
+                            value={userPassword}
+                            onChange={(event)=>setUserPassword(event.target.value)}
+                            required
+                        />
+                        {
+                            (newPasswordType==="text") ?
+                            (<AiOutlineEye onClick={toggleNewPasswordAppearance} size="2em" style={{cursor:'pointer'}}/>)
+                            :
+                            (<AiOutlineEyeInvisible onClick={toggleNewPasswordAppearance} size="2em" style={{cursor:'pointer'}}/>)
+                        }
+                    </div>
                 </div>
 
                 <div className="user-options-container">
