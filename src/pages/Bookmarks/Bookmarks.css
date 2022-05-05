@@ -13,6 +13,23 @@
     background-color: var(--background-color);
 }
 
+.no-bookmarks-container
+{
+    padding-top: 0;
+    color: var(--pure-white);
+    background-color: var(--dark-grey);
+}
+
+.no-bookmarks-container svg
+{
+    height: 400px;
+}
+
+.no-bookmarks-header
+{
+    margin-top: 4rem;
+}
+
 @media only screen and (max-width:83.4375em){
     .bookmarks-page-container
     {

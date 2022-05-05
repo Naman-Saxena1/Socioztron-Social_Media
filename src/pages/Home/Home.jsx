@@ -3,11 +3,12 @@ import axios from "axios"
 import jwt_decode from "jwt-decode"
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import Lottie from "react-lottie"
 import {
     updateHomeFeed,
     updateAllUserLikedPosts,
     getCreationSortedPosts,
-    updateUserDetails
+    updateUserFollowingList
 } from "../../actions/index"
 import {
     useUserLogin
@@ -21,14 +22,25 @@ import {
     HomeFeedContentController
 } from '../../components'
 import './Home.css'
+import LoadingLottie from "../../assets/lottie/loading-0.json"
 
 function Home()
 {
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
     const userDetails = useSelector(state => state.userDetailsReducer)
     const {
+        loggedInUserEmail,
         loggedInUserFollowing
     } = userDetails
+
+    const loadingObj = {
+      loop: true,
+      autoplay: true,
+      animationData : LoadingLottie,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    }
 
     const dispatch = useDispatch()
     const { userLoggedIn } = useUserLogin()
@@ -59,11 +71,29 @@ function Home()
             dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
         })()
 
-    },[userLoggedIn])
+    },[userLoggedIn, loggedInUserFollowing])
 
     useEffect(()=>{
         dispatch(getCreationSortedPosts())
     },[sortByHomeFeed])
+
+    useEffect(()=>{
+        if(userLoggedIn && loggedInUserFollowing.length===0)
+        {
+            (async ()=>{
+                let loggedInUserResponse = await axios.get(
+                        `https://socioztron.herokuapp.com/api/user/${loggedInUserEmail}`,
+                        { 
+                            headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
+                        }
+                )
+
+                let loggedInUserDetails =  loggedInUserResponse.data.allUserDetails
+                dispatch(updateUserFollowingList(loggedInUserDetails.following))
+
+            })()
+        }
+    })
 
     return (
         <div className='page-container'>
@@ -79,6 +109,24 @@ function Home()
                         setSortByHomeFeed={setSortByHomeFeed} 
                     />
 
+                    {
+                        userLoggedIn && loggedInUserFollowing &&
+                        (loggedInUserFollowing.length===1||loggedInUserFollowing.length===0) &&
+                        (
+                            <h3 className="starting-following-suggestion-header">
+                                Starting following other users to view more content
+                            </h3>
+                        )
+                    }
+                    {
+                        homeFeed.length===0 &&
+                        <Lottie options={loadingObj}
+                            height={380}
+                            style={{ margin: "auto"}}
+                            isStopped={false}
+                            isPaused={false}
+                        />
+                    }
                     {
                         userLoggedIn ? (
                             trendingHomeFeed?

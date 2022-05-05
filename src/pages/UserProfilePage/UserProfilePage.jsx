@@ -91,7 +91,6 @@ function UserProfilePage()
     },[profileUserEmail, loggedInUserFollowing])
 
     const updateUserFollowing = async() => {
-        console.log("Update user following list called")
         let updatedUserFollowingListResponse = await axios.patch(
             `https://socioztron.herokuapp.com/api/user/following`,
             {

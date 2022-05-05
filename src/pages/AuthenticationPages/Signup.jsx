@@ -44,6 +44,7 @@ function Signup()
     }
 
     return (
+        <div className="user-auth-page">
         <div className="user-auth-content-container">
             <form onSubmit={signupUser} className="user-auth-form">
                 <h2>Signup</h2>
@@ -109,6 +110,7 @@ function Signup()
                 </div>
 
             </form>
+        </div>
         </div>
     )
 }
