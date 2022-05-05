@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Full Stack Social Project using MERN + Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Link - [Socioztron](https://socioztron-dev-branch.netlify.app/)
 
 ## Available Scripts
 
@@ -14,57 +14,72 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+## Technologies used 
+1. HTML
+2. CSS
+3. JavaScript
+4. React
+5. Redux
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node JS, Express JS and MongoDb is used for Backend server which is deployed on Heroku and MongoDb Atlas.
 
-### `npm run build`
+## Features:
+1. User Authentication (Signup, Login and Logout)
+2. Create a Post
+   - Add Emojis, Images and Gifs
+   - Like 
+   - Comment
+   - Replies
+3. Edit Post
+4. Delete Post
+5. User Feed 
+   - Filter Trending
+   - Sort by Oldest and Latest
+6. User Profile
+   - Add Profile Picture
+   - Add Background Image
+   - User Bio
+   - Portfolio URL
+7. Edit Logged in User Profile
+8. Follow/Unfollow to control content you want to see on Home feed
+9. Explore Feed
+   - To explore content, even from people you don't follow
+10. Bookmark Post
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## You are welcome to contribute to this project 
+1. Create a personal fork of the project on Github.
+2. Clone the fork on your local machine. Your remote repo on Github is called origin.
+3. Add the original repository as a remote called upstream.
+4. If you created your fork a while ago be sure to pull upstream changes into your local repository.
+5. Create a new branch to work on! Branch from development branch.
+6. Implement/fix your feature, comment your code.
+7. Squash your commits into a single commit with git's interactive rebase. Create a new branch if necessary.
+8. Push your branch to your fork on Github, the remote origin.
+9. From your fork open a pull request in the correct branch. Target the project's development branch.
+10. Once the pull request is approved and merged you can pull the changes from upstream to your local repo and delete your extra branch(es).
+11. And last but not least: Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## You can report issues on this project using Github issue 
+1. You can read more about this from [Github Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots
 
-### `npm run eject`
+### User Authentication Pages
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/AuthPage-1.PNG)
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/AuthPage-2.PNG)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Home Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/HomePage-1.PNG)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Explore Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ExplorePage-1.PNG)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Messages Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/MessagesPage-1.PNG)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Bookmark Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/BookmarksPage-1.PNG)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### User Profile Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/UserProfilePage-1.PNG)
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/EditProfileModal-1.PNG)
