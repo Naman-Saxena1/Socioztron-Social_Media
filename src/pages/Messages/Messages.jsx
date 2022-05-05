@@ -27,7 +27,7 @@ function Messages()
         <div className='page-container'>
             <Sidebar/>
             <div className='messages-page-container'>
-                <h2>Messaging feature coming soon! 😉</h2>
+                <h2>Messaging feature is coming soon! 😉</h2>
                     <Lottie options={manCodingObj}
                         style={{ 
                             width: "auto", 
