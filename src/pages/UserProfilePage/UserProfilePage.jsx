@@ -13,7 +13,8 @@ import {
 } from "../../context/index"
 import {
     updateCurrentProfile,
-    updateUserFollowingList
+    updateUserFollowingList,
+    updateHomeFeed
 } from "../../actions/index"
 import {
     HiOutlinePencilAlt,
@@ -89,6 +90,18 @@ function UserProfilePage()
             setIsUserFollowed(true)
         }
     },[profileUserEmail, loggedInUserFollowing])
+
+    useEffect(()=>{
+        if(homeFeed.length===0)
+        {
+            (async()=>{
+                let updatedHomeFeed = await axios.get(
+                    "https://socioztron.herokuapp.com/api/userpost"
+                )
+                dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
+            })()
+        }
+    },[])
 
     const updateUserFollowing = async() => {
         let updatedUserFollowingListResponse = await axios.patch(
