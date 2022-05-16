@@ -136,7 +136,7 @@ function Navbar() {
                         </button>
                     </Link>
                 }
-                <button className="icon-btn">
+                {/* <button className="icon-btn">
                     <div className="icon-count-badge">
                         <AiOutlineBell/>
                         {
@@ -144,7 +144,7 @@ function Navbar() {
                             (<span className="count-badge-x">{4}</span>)
                         }
                     </div>
-                </button>
+                </button> */}
             </div>
         </div>
     )
