@@ -1,6 +1,10 @@
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import axios from "axios"
+import {
+    updateHomeFeed
+} from "../../actions/index"
 import { 
     Sidebar,
     UserPost,
@@ -12,11 +16,24 @@ import './Explore.css'
 function Explore()
 {
     const homeFeed = useSelector((state)=> state.homeFeedReducer)
+    const dispatch = useDispatch()
 
     const { pathname } = useLocation()
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
+
+    useEffect(()=>{
+        if(homeFeed.length===0)
+        {
+            (async()=>{
+                let updatedHomeFeed = await axios.get(
+                    "https://socioztron.herokuapp.com/api/userpost"
+                )
+                dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
+            })()
+        }
+    },[])
 
     return (
         <div className='page-container'>
