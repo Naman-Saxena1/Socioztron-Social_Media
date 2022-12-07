@@ -88,7 +88,7 @@ function CreatePost()
             {
                 //Add this post to feed
                 let updatedDataResponse = await axios.post(
-                    "https://socioztron.herokuapp.com/api/userpost",
+                    "https://socioztron-server.vercel.app/api/userpost",
                     {
                       newPostTextContent,
                       selectedFileUrl

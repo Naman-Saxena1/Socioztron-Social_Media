@@ -37,7 +37,7 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
         setNewReplyTextContent("")
         addReplyTextArea.current.style.height = "35px";
         let updatedHomeFeedResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/userpost/create-new-reply/${postId}/${_id}`,
+            `https://socioztron-server.vercel.app/api/userpost/create-new-reply/${postId}/${_id}`,
             {
                 newReplyText
             },

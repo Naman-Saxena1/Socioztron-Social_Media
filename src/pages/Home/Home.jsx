@@ -57,7 +57,7 @@ function Home()
             if(userLoggedIn)
             {
                 let updatedAllUserLikedPosts = await axios.get(
-                    "https://socioztron.herokuapp.com/api/userpost/likedposts",
+                    "https://socioztron-server.vercel.app/api/userpost/likedposts",
                     { 
                         headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
                     }
@@ -66,7 +66,7 @@ function Home()
             }
      
             let updatedHomeFeed = await axios.get(
-                "https://socioztron.herokuapp.com/api/userpost"
+                "https://socioztron-server.vercel.app/api/userpost"
             )
             dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
         })()
@@ -82,7 +82,7 @@ function Home()
         {
             (async ()=>{
                 let loggedInUserResponse = await axios.get(
-                        `https://socioztron.herokuapp.com/api/user/${loggedInUserEmail}`,
+                        `https://socioztron-server.vercel.app/api/user/${loggedInUserEmail}`,
                         { 
                             headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
                         }

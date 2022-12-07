@@ -21,7 +21,7 @@ You may also see any lint errors in the console.
 4. React
 5. Redux
 
-- Node JS, Express JS and MongoDb is used for Backend server which is deployed on Heroku and MongoDb Atlas.
+- Node JS, Express JS and MongoDb is used for Backend server which is deployed on Vercel and MongoDb Atlas.
 
 ## Features:
 1. User Authentication (Signup, Login and Logout)

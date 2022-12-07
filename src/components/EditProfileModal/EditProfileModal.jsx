@@ -94,7 +94,7 @@ const EditProfileModal = () => {
     const updateUserProfile = async () => {
 
         let updateProfileResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/user/edit`,
+            `https://socioztron-server.vercel.app/api/user/edit`,
             {
                 selectedProfileFileUrl,
                 selectedBackgroundFileUrl,

@@ -46,7 +46,7 @@ const CommentsSection = ({ userPostDetails }) => {
         setNewCommentTextContent("")
         addCommentTextArea.current.style.height = "35px";
         let updatedHomeFeedResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/userpost/create-new-comment/${_id}`,
+            `https://socioztron-server.vercel.app/api/userpost/create-new-comment/${_id}`,
             {
                 newCommentText
             },

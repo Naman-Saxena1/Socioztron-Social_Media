@@ -36,7 +36,7 @@ function Signup()
     {
         event.preventDefault();
         axios.post(
-            "https://socioztron.herokuapp.com/api/signup",
+            "https://socioztron-server.vercel.app/api/signup",
             {
                 newUserName: `${newUserName}`,
                 newUserEmail: `${newUserEmail}`,

@@ -72,7 +72,7 @@ function UserProfilePage()
 
         (async()=>{
             let allUserDetails = await axios.get(
-                `https://socioztron.herokuapp.com/api/user/${profileUserEmail}`
+                `https://socioztron-server.vercel.app/api/user/${profileUserEmail}`
             )
 
             if(allUserDetails.data.status==="ok")
@@ -96,7 +96,7 @@ function UserProfilePage()
         {
             (async()=>{
                 let updatedHomeFeed = await axios.get(
-                    "https://socioztron.herokuapp.com/api/userpost"
+                    "https://socioztron-server.vercel.app/api/userpost"
                 )
                 dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
             })()
@@ -105,7 +105,7 @@ function UserProfilePage()
 
     const updateUserFollowing = async() => {
         let updatedUserFollowingListResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/user/following`,
+            `https://socioztron-server.vercel.app/api/user/following`,
             {
                 profileUserEmail
             },

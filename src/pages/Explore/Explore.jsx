@@ -28,7 +28,7 @@ function Explore()
         {
             (async()=>{
                 let updatedHomeFeed = await axios.get(
-                    "https://socioztron.herokuapp.com/api/userpost"
+                    "https://socioztron-server.vercel.app/api/userpost"
                 )
                 dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
             })()

@@ -44,7 +44,7 @@ function Login()
     {
         event.preventDefault();
         axios.post(
-            "https://socioztron.herokuapp.com/api/login",
+            "https://socioztron-server.vercel.app/api/login",
             {
                 userEmail,
                 userPassword

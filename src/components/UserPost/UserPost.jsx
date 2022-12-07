@@ -126,7 +126,7 @@ function UserPost({userPostDetails})
     const handlePostLikeStatus = async () => {
         setPostLikeStatus(prevState => !prevState)
         let updatedUserAndPostDetails = await axios.patch(
-            `https://socioztron.herokuapp.com/api/userpost/updatelikes/${userPostDetails._id}`,
+            `https://socioztron-server.vercel.app/api/userpost/updatelikes/${userPostDetails._id}`,
             {},
             {
                 headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
@@ -142,7 +142,7 @@ function UserPost({userPostDetails})
 
     const deleteUserPost = async() => {
         let deletePostResponse = await axios.delete(
-            `https://socioztron.herokuapp.com/api/userpost/delete/${_id}`,
+            `https://socioztron-server.vercel.app/api/userpost/delete/${_id}`,
             {
                 headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
             }
@@ -156,7 +156,7 @@ function UserPost({userPostDetails})
 
     const bookmarkUserPostHandler = async() => {
         let bookmarkPostResponse = await axios.patch(
-            `https://socioztron.herokuapp.com/api/userpost/bookmark/${_id}`,
+            `https://socioztron-server.vercel.app/api/userpost/bookmark/${_id}`,
             {},
             {
                 headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
