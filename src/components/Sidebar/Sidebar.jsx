@@ -35,10 +35,10 @@ function Sidebar()
                     <p className="sidebar-options-text">Explore</p>
                 </div>
             </Link>
-            <Link to="/messages">
-                <div className={urlPath==="/messages"?`sidebar-options active-sidebar-option`:`sidebar-options`}>
+            <Link to="/chats">
+                <div className={urlPath==="/chats"?`sidebar-options active-sidebar-option`:`sidebar-options`}>
                     <BiEnvelope className="sidebar-options-icons"/>
-                    <p className="sidebar-options-text">Messages</p>
+                    <p className="sidebar-options-text">Chats</p>
                 </div>
             </Link>
             <Link to="/bookmarks">

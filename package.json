@@ -3,15 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
-    "cloudinary-react": "^1.7.2",
+    "cloudinary-react": "^1.8.1",
     "emoji-picker-react": "^3.5.1",
     "jwt-decode": "^3.1.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.14.0",
     "react-icons": "^4.3.1",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.2.8",
@@ -20,6 +17,7 @@
     "redux": "^4.1.2",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.4.1",
+    "socket.io-client": "^4.7.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -30,8 +28,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {

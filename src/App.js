@@ -3,26 +3,29 @@ import {
   Navbar,
   Toast,
   EditPostModal,
-  EditProfileModal
+  EditProfileModal,
+  CreateChatModal
 } from './components/index'
 import {
-  useEditModal,
-  useEditProfileModal
+  useEditPostModal,
+  useEditProfileModal,
+  useChatModal
 } from "./context/index"
 import {
   Signup,
   Login,
   Home,
   Explore,
-  Messages,
+  Chats,
   Bookmarks,
   UserProfilePage
 } from './pages/index'
 import './App.css';
 
 function App() {
-  const { showEditModal } = useEditModal()
+  const { showEditPostModal } = useEditPostModal()
   const { showEditProfileModal } = useEditProfileModal()
+  const { isCreatingNewChatModal } = useChatModal()
 
   return (
     <Router>
@@ -33,16 +36,19 @@ function App() {
           <Route path="/login"          element={<Login/>} />
           <Route path="/signup"         element={<Signup/>} />
           <Route path="/explore"        element={<Explore/>} />
-          <Route path="/messages"       element={<Messages/>} />
+          <Route path="/chats"          element={<Chats/>} />
           <Route path="/bookmarks"      element={<Bookmarks/>} />
           <Route path="/profile"        element={<UserProfilePage/>} />
           <Route path="/profile/:other_user_profile"        element={<UserProfilePage/>} />
         </Routes>
         {
-          showEditModal && (<EditPostModal/>)
+          showEditPostModal && (<EditPostModal/>)
         }
         {
           showEditProfileModal && (<EditProfileModal/>)
+        }
+        {
+          isCreatingNewChatModal && (<CreateChatModal/>)
         }
         <Toast position="bottom-right"/>
       </div>
