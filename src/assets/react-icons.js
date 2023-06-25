@@ -16,7 +16,8 @@ export {
     BiPoll,
     BiMap,
     BiComment,
-    BiLink
+    BiLink,
+    BiMessageSquareAdd
 } from "react-icons/bi"
 
 export {

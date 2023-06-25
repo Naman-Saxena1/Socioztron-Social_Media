@@ -111,6 +111,7 @@ const EditProfileModal = () => {
             let responseProfileDetails = updateProfileResponse.data.updatedUserDetails
             dispatch(updateCurrentProfile(responseProfileDetails))
             dispatch(updateUserDetails({
+                loggedInUserId: responseProfileDetails._id,
                 loggedInUserName: responseProfileDetails.name,
                 loggedInUserEmail: responseProfileDetails.email, 
                 loggedInUserProfile: responseProfileDetails.profilePicSrc,

@@ -6,7 +6,7 @@ import {
     BsEmojiSmile
 } from "../../assets/react-icons"
 import {
-    useEditModal
+    useEditPostModal
 } from "../../context/index"
 import {
     updateHomeFeed
@@ -17,7 +17,7 @@ import "./EditPostModal.css"
 const EditPostModal = () => {
     const [ postUserProfile, setPostUserProfile] = useState("https://api.iconify.design/ph:user-circle-thin.svg")
     const { 
-        showEditModal, 
+        showEditPostModal, 
         setShowEditModal, 
         editPostDetails : {
             _id,
@@ -27,7 +27,7 @@ const EditPostModal = () => {
             noOfLikes
         }, 
         setEditPostDetails
-    } = useEditModal()
+    } = useEditPostModal()
 
     const [ updatedPostText, setUpdatedPostText ] = useState(contentText)
     const [ showEmojiPicker, setShowEmojiPicker ] = useState(false)

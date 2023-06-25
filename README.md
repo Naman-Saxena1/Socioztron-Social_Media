@@ -74,7 +74,7 @@ You may also see any lint errors in the console.
 ### Explore Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ExplorePage-1.PNG)
 
-### Messages Page
+### Chats Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/MessagesPage-1.PNG)
 
 ### Bookmark Page

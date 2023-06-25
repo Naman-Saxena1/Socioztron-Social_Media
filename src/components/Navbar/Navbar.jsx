@@ -14,7 +14,7 @@ import {
     updateCurrentProfile
 } from "../../actions/index"
 import {
-    useEditModal
+    useEditPostModal
 } from "../../context/index"
 import './Navbar.css'
 
@@ -29,7 +29,7 @@ function Navbar() {
 
     const { userLoggedIn, setUserLoggedIn } = useUserLogin(false)
     const { showToast } = useToast()
-    const { setShowEditModal } = useEditModal()
+    const { setShowEditModal } = useEditPostModal()
 
     useEffect(()=>{
         const token=localStorage.getItem('socioztron-user-token')
@@ -47,6 +47,7 @@ function Navbar() {
                     if(""===user.userProfilePic)
                     {
                         dispatch(updateUserDetails({
+                            loggedInUserId: user._id,
                             loggedInUserName: user.name, 
                             loggedInUserEmail: user.email, 
                             loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg",
@@ -56,6 +57,7 @@ function Navbar() {
                     else
                     {
                         dispatch(updateUserDetails({
+                            loggedInUserId: user._id,
                             loggedInUserName: user.name, 
                             loggedInUserEmail: user.email, 
                             loggedInUserProfile: user.userProfilePic,
@@ -71,6 +73,7 @@ function Navbar() {
     function logoutUser()
     {
         dispatch(updateUserDetails({
+            loggedInUserId: "",
             loggedInUserName: "", 
             loggedInUserEmail: "", 
             loggedInUserProfile: "https://api.iconify.design/ph:user-circle-thin.svg",

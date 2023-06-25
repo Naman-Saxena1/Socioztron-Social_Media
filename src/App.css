@@ -95,6 +95,7 @@ hr
     .page-container
     {
         min-height: calc(100vh - 157.23px);
+        height: 100vh;
     }
 }
 

@@ -9,7 +9,8 @@ import {
   UserLoginContextProvider,
   ToastContextProvider,
   EditPostContextProvider,
-  EditProfileContextProvider 
+  EditProfileContextProvider,
+  ChatContextProvider
 } from './context/index'
 
 const container = document.getElementById('root');
@@ -23,9 +24,11 @@ root.render(
       <ToastContextProvider>
         <EditProfileContextProvider>
           <EditPostContextProvider>
-            <Provider store={store}>
-              <App/>
-            </Provider>
+            <ChatContextProvider>
+              <Provider store={store}>
+                <App/>
+              </Provider>
+            </ChatContextProvider>
           </EditPostContextProvider>
         </EditProfileContextProvider>
       </ToastContextProvider>

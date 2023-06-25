@@ -3,13 +3,13 @@ import { useState, useContext, createContext } from "react"
 const EditPostContext = createContext(null)
 
 const EditPostContextProvider = ({children}) => {
-    const [ showEditModal, setShowEditModal ] = useState(false)
+    const [ showEditPostModal, setShowEditModal ] = useState(false)
     const [ editPostDetails, setEditPostDetails ] = useState({})
 
     return (
         <EditPostContext.Provider 
             value={{ 
-                showEditModal, 
+                showEditPostModal, 
                 setShowEditModal, 
                 editPostDetails, 
                 setEditPostDetails
@@ -20,6 +20,6 @@ const EditPostContextProvider = ({children}) => {
     )
 }
 
-const useEditModal = () => useContext(EditPostContext)
+const useEditPostModal = () => useContext(EditPostContext)
 
-export { EditPostContextProvider, useEditModal }
+export { EditPostContextProvider, useEditPostModal }

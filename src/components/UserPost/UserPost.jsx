@@ -16,7 +16,7 @@ import {
 import {
     useUserLogin,
     useToast,
-    useEditModal
+    useEditPostModal
 } from "../../context/index"
 import {
     updateHomeFeed,
@@ -35,7 +35,7 @@ function UserPost({userPostDetails})
     const loggedInUserBookmarks = useSelector(state => state.userBookmarksReducer)
     const { userLoggedIn } = useUserLogin()
     const { showToast } = useToast()
-    const { setShowEditModal, setEditPostDetails} = useEditModal()
+    const { setShowEditModal, setEditPostDetails} = useEditPostModal()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     

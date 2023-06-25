@@ -125,6 +125,12 @@ body
     text-align: center;
 }
 
+.form-user-auth-submit-btn:disabled 
+{
+    pointer-events: none;
+    user-select: none;
+}
+
 @media only screen and (max-width:83.4375em){
     .user-auth-page
     {
