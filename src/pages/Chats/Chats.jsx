@@ -18,7 +18,7 @@ import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import io from "socket.io-client"
 import './Chats.css'
 
-const ENDPOINT = "http://localhost:1337";
+const ENDPOINT = "https://socioztron-server.vercel.app";
 var socket, currentlyOpenedChatCompare, hasUserJoined= false;
 
 function Chats()
