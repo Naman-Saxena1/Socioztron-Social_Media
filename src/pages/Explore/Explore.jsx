@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import axios from "axios"
+import { fetchUpdatedHomeFeed } from "../../services/parentServices"
 import {
     updateHomeFeed
 } from "../../actions/index"
@@ -27,9 +27,7 @@ function Explore()
         if(homeFeed.length===0)
         {
             (async()=>{
-                let updatedHomeFeed = await axios.get(
-                    "https://socioztron-server.vercel.app/api/userpost"
-                )
+                let updatedHomeFeed = await fetchUpdatedHomeFeed()
                 dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
             })()
         }

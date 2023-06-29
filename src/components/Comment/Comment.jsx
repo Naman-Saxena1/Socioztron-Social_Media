@@ -1,10 +1,12 @@
 import { useState, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import axios from "axios"
 import {
     updateHomeFeed
 } from "../../actions/index"
+import {
+    addReplyToPostComment
+} from "../../services/parentServices"
 import {
     AiOutlineSend,
     BsEmojiSmile
@@ -36,15 +38,13 @@ const Comment = ({postId, commentDetails, userLoginCheckHandler}) => {
         let newReplyText = newReplyTextContent
         setNewReplyTextContent("")
         addReplyTextArea.current.style.height = "35px";
-        let updatedHomeFeedResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/userpost/create-new-reply/${postId}/${_id}`,
-            {
-                newReplyText
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        
+        let param = {
+            commentId: _id,
+            postId: postId,
+            newReplyText: newReplyText
+        }
+        let updatedHomeFeedResponse = await addReplyToPostComment(param)
 
         if(updatedHomeFeedResponse.data.status==="ok")
         {

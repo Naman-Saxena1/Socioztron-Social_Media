@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import axios from "axios"
+import {
+    updateUserPost
+} from "../../services/parentServices"
 import {
     CgClose,
     BsEmojiSmile
@@ -50,17 +52,9 @@ const EditPostModal = () => {
         }
     },[])
 
-    const updateUserPost = async () => {
+    const updateUserPostFn = async () => {
 
-        let updatePostResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/userpost/edit/${_id}`,
-            {
-                updatedPostText
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let updatePostResponse = await updateUserPost({postId: _id,updatedPostText: updatedPostText})
 
         if(updatePostResponse.data.status==="ok")
         {
@@ -134,7 +128,7 @@ const EditPostModal = () => {
 
                 <button 
                     className="solid-success-btn edit-post-save-btn"
-                    onClick={updateUserPost}
+                    onClick={updateUserPostFn}
                 >
                     Save
                 </button>

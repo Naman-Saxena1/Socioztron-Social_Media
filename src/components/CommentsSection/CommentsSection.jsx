@@ -2,7 +2,9 @@ import { useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import jwt_decode from "jwt-decode"
-import axios from "axios"
+import {
+    addCommentToPost
+} from "../../services/parentServices"
 import {
     useToast
 } from "../../context/index"
@@ -41,19 +43,16 @@ const CommentsSection = ({ userPostDetails }) => {
         setNewCommentTextContent(prevState => prevState+emojiObject.emoji)
     }
 
-    const addCommentToPost = async() => {
+    const addCommentToPostFn = async() => {
         let newCommentText = newCommentTextContent
         setNewCommentTextContent("")
         addCommentTextArea.current.style.height = "35px";
-        let updatedHomeFeedResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/userpost/create-new-comment/${_id}`,
-            {
-                newCommentText
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+
+        let param = {
+            postId: _id,
+            newCommentText: newCommentText
+        }
+        let updatedHomeFeedResponse = await addCommentToPost(param)
 
         if(updatedHomeFeedResponse.data.status==="ok")
         {
@@ -138,7 +137,7 @@ const CommentsSection = ({ userPostDetails }) => {
                         </div>
                         <button 
                             className="icon-btn send-reply-btn"
-                            onClick={()=>userLoginCheckHandler(addCommentToPost)}
+                            onClick={()=>userLoginCheckHandler(addCommentToPostFn)}
                         >
                             <div>
                                 <span>Send</span>

@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux"
-import axios from 'axios';
+import { useSelector } from "react-redux"
+import {
+    fetchUserChatList,
+    fetchChatDetails,
+    sendMessage
+} from '../../services/parentServices'
 import { 
     Sidebar
 } from '../../components'
@@ -18,7 +22,7 @@ import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 import io from "socket.io-client"
 import './Chats.css'
 
-const ENDPOINT = "https://socioztron-server.vercel.app";
+const ENDPOINT = "http://localhost:1337";
 var socket, currentlyOpenedChatCompare, hasUserJoined= false;
 
 function Chats()
@@ -47,12 +51,7 @@ function Chats()
 
     useEffect(()=>{
         (async()=>{
-            let loggedInUserChatsList = await axios.get(
-                `https://socioztron-server.vercel.app/api/chat/user/${loggedInUserEmail}`,
-                {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-                }
-            )
+            let loggedInUserChatsList = await fetchUserChatList(loggedInUserEmail)
 
             if(loggedInUserChatsList.data.status==='ok')
             {
@@ -124,12 +123,7 @@ function Chats()
         }
         else
         {
-            let response = await axios.get(
-                `https://socioztron-server.vercel.app/api/chat/messages?chatid=${chat._id}&userid=${loggedInUserId}`,
-                {
-                    headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-                }
-            )
+            let response = await fetchChatDetails({chatId: chat._id, userId: loggedInUserId})
 
             if(response.data.status==="ok")
             {
@@ -156,17 +150,11 @@ function Chats()
 
     async function sendMessageHandler()
     {
-        let response = await axios.post(
-            `https://socioztron-server.vercel.app/api/chat/messages`,
-            {
-                chatId      : currentlyOpenedChat._id,
-                userId      : loggedInUserId,
-                newMessage  : newMessage
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let response = await sendMessage({
+            chatId      : currentlyOpenedChat._id,
+            userId      : loggedInUserId,
+            newMessage  : newMessage
+        })
 
         let creationDate = new Date()
         let newMessageDoc = { 

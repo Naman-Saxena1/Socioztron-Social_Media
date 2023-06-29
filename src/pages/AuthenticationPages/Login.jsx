@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import jwt_decode from "jwt-decode"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
+import { loginUser } from "../../services/parentServices"
 import { useDispatch } from "react-redux"
 import {
     updateUserDetails
@@ -40,16 +40,11 @@ function Login()
       }
     }
 
-    function loginUser(event)
+    function loginUserHandler(event)
     {
         event.preventDefault();
-        axios.post(
-            "https://socioztron-server.vercel.app/api/login",
-            {
-                userEmail,
-                userPassword
-            }
-        )
+
+        loginUser({userEmail,userPassword})
         .then(res => {
             if(res.data.user)
             {
@@ -81,7 +76,7 @@ function Login()
     return (
         <div className="user-auth-page">
         <div className="user-auth-content-container">
-            <form onSubmit={loginUser} className="user-auth-form">
+            <form onSubmit={loginUserHandler} className="user-auth-form">
                 <h2>Login</h2>
                 
                 <div className="user-auth-input-container">

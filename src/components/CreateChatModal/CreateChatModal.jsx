@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import axios from "axios"
+import {
+    fetchUserFollowers,
+    createNewChat
+} from "../../services/parentServices"
 import {
     CgClose
 } from "../../assets/react-icons"
 import {
-    useEditProfileModal,
     useChatModal
 } from "../../context/index"
 import { Image } from "cloudinary-react"
@@ -31,9 +33,7 @@ const CreateChatModal = () => {
 
     useEffect(()=>{
         (async()=>{
-            await axios.get(
-                `https://socioztron-server.vercel.app/api/user/followers/${loggedInUserEmail}`
-            )
+            await fetchUserFollowers(loggedInUserEmail) 
             .then(res=>{
                 setLoggedInUserFollowers(res.data.followers)
             })
@@ -60,15 +60,7 @@ const CreateChatModal = () => {
 
     async function createChatHandler()
     {
-        let createNewChatResponse = await axios.post(
-            "https://socioztron-server.vercel.app/api/chat",
-            {
-                newChatUsers
-            },
-            {
-              headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let createNewChatResponse = await createNewChat({newChatUsers: newChatUsers})
 
         if(createNewChatResponse.data.status==='ok')
         {
