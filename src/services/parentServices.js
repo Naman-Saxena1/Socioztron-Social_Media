@@ -106,7 +106,7 @@ export const fetchUserChatList = loggedInUserEmail => {
 
 export const fetchChatDetails = param => {
     return apiService()
-    .get(`http://localhost:1337/api/chat/messages?chatid=${param.chatId}&userid=${param.userId}`)
+    .get(`/api/chat/messages?chatid=${param.chatId}&userid=${param.userId}`)
     .then(response => {
         return response
     })

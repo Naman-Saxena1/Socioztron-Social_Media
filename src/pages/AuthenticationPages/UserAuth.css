@@ -125,10 +125,24 @@ body
     text-align: center;
 }
 
+.form-user-auth-submit-btn{
+    margin: 3rem 0 1rem 0;
+}
+
 .form-user-auth-submit-btn:disabled 
 {
     pointer-events: none;
     user-select: none;
+}
+
+.guest-user-auth-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.guest-user-auth-container .solid-primary-btn{
+    margin: 0;
 }
 
 @media only screen and (max-width:83.4375em){

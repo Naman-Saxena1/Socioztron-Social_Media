@@ -72,18 +72,19 @@ function UserProfilePage()
       window.scrollTo(0, 0);
     }, [pathname]);
 
-    useEffect(()=>{
+    useEffect(()=>{    
+        if(userLoggedIn)
+        {
+            (async()=>{
+                let allUserDetails = await fetchUserDetails(profileUserEmail)
 
-        (async()=>{
-            let allUserDetails = await fetchUserDetails(profileUserEmail)
+                if(allUserDetails.data.status==="ok")
+                {
+                    dispatch(updateCurrentProfile(allUserDetails.data.allUserDetails))
+                }
 
-            if(allUserDetails.data.status==="ok")
-            {
-                dispatch(updateCurrentProfile(allUserDetails.data.allUserDetails))
-            }
-
-        })()
-
+            })()
+        }
     },[state])
     
     useEffect(()=>{
