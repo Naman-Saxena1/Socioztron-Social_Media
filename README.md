@@ -70,7 +70,7 @@ You may also see any lint errors in the console.
 ## Screenshots
 
 ### Design
-![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/DesignDiagram.PNG)
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/DesignDiagram.png)
 
 ### User Authentication Pages
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/AuthPage-1.PNG)
