@@ -70,7 +70,7 @@ You may also see any lint errors in the console.
 ## Screenshots
 
 ### Design
-![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/Design Diagram.PNG)
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/DesignDiagram.PNG)
 
 ### User Authentication Pages
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/AuthPage-1.PNG)
@@ -94,4 +94,5 @@ You may also see any lint errors in the console.
 
 ### Chat Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-1.PNG)
+
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-2.PNG)
