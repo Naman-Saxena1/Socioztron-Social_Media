@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const apiService =  () => {
+const apiService = () => {
     return axios.create({
         baseURL: "https://socioztron.co.in",
         headers: {
