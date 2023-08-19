@@ -82,8 +82,10 @@ You may also see any lint errors in the console.
 ### Explore Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ExplorePage-1.PNG)
 
-### Chats Page
-![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/MessagesPage-1.PNG)
+### Chat Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-1.PNG)
+
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-2.PNG)
 
 ### Bookmark Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/BookmarksPage-1.PNG)
@@ -92,7 +94,3 @@ You may also see any lint errors in the console.
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/UserProfilePage-1.PNG)
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/EditProfileModal-1.PNG)
 
-### Chat Page
-![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-1.PNG)
-
-![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-2.PNG)
