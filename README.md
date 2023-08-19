@@ -1,4 +1,4 @@
-# Full Stack Social Media using MERN + Redux
+# Full Stack Social Media using MERN, Redux, EC2, Nginx, Docker and Redis
 
 Live Link - [Socioztron](https://socioztron-dev-branch.netlify.app/)
 
@@ -20,8 +20,12 @@ You may also see any lint errors in the console.
 3. JavaScript
 4. React
 5. Redux
-
-- Node JS, Express JS and MongoDb is used for Backend server which is deployed on Vercel and MongoDb Atlas.
+6. Node JS and Express JS
+7. MongoDb
+8. AWS EC2
+9. Nginx
+10. Docker
+11. Redis
 
 ## Features:
 1. User Authentication (Signup, Login and Logout)
@@ -45,6 +49,7 @@ You may also see any lint errors in the console.
 9. Explore Feed
    - To explore content by users, even from people you don't follow
 10. Bookmark Post
+11. Chat as DM or in group
 
 ## You are welcome to contribute to this project 
 1. Create a personal fork of the project on Github.
@@ -63,6 +68,9 @@ You may also see any lint errors in the console.
 1. You can read more about this from [Github Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue)
 
 ## Screenshots
+
+### Design
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/Design Diagram.PNG)
 
 ### User Authentication Pages
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/AuthPage-1.PNG)
@@ -83,3 +91,7 @@ You may also see any lint errors in the console.
 ### User Profile Page
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/UserProfilePage-1.PNG)
 ![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/EditProfileModal-1.PNG)
+
+### Chat Page
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-1.PNG)
+![](https://github.com/Naman-Saxena1/Socioztron-Social_Media/blob/development/src/assets/screenshots/ChatPage-2.PNG)
