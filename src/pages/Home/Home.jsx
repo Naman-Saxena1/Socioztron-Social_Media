@@ -1,5 +1,9 @@
 import { useState,useEffect } from "react"
-import axios from "axios"
+import {
+    fetchUserLikedPosts,
+    fetchUpdatedHomeFeed,
+    fetchUserDetails
+} from "../../services/parentServices"
 import jwt_decode from "jwt-decode"
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
@@ -56,18 +60,11 @@ function Home()
         (async ()=>{
             if(userLoggedIn)
             {
-                let updatedAllUserLikedPosts = await axios.get(
-                    "https://socioztron-server.vercel.app/api/userpost/likedposts",
-                    { 
-                        headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
-                    }
-                )
+                let updatedAllUserLikedPosts = await fetchUserLikedPosts()
                 dispatch(updateAllUserLikedPosts(updatedAllUserLikedPosts.data.likedPosts))
             }
      
-            let updatedHomeFeed = await axios.get(
-                "https://socioztron-server.vercel.app/api/userpost"
-            )
+            let updatedHomeFeed = await fetchUpdatedHomeFeed()
             dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
         })()
 
@@ -81,13 +78,7 @@ function Home()
         if(userLoggedIn && loggedInUserFollowing.length===0)
         {
             (async ()=>{
-                let loggedInUserResponse = await axios.get(
-                        `https://socioztron-server.vercel.app/api/user/${loggedInUserEmail}`,
-                        { 
-                            headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
-                        }
-                )
-
+                let loggedInUserResponse = await fetchUserDetails(loggedInUserEmail)
                 let loggedInUserDetails =  loggedInUserResponse.data.allUserDetails
                 dispatch(updateUserFollowingList(loggedInUserDetails.following))
 

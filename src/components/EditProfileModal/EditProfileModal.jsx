@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import axios from "axios"
 import {
+    updateUserProfile
+} from "../../services/parentServices"
+import {
     CgClose,
     BsEmojiSmile
 } from "../../assets/react-icons"
@@ -91,20 +94,14 @@ const EditProfileModal = () => {
 
     }
 
-    const updateUserProfile = async () => {
+    const updateUserProfileFn = async () => {
 
-        let updateProfileResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/user/edit`,
-            {
-                selectedProfileFileUrl,
-                selectedBackgroundFileUrl,
-                updatedBioText,
-                updatedPortfolioLink
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let updateProfileResponse = await updateUserProfile({
+            selectedProfileFileUrl,
+            selectedBackgroundFileUrl,
+            updatedBioText,
+            updatedPortfolioLink
+        })
 
         if(updateProfileResponse.data.status==="ok")
         {
@@ -268,7 +265,7 @@ const EditProfileModal = () => {
 
                 <button 
                     className="solid-success-btn edit-profile-save-btn"
-                    onClick={updateUserProfile}
+                    onClick={updateUserProfileFn}
                 >
                     Save
                 </button>

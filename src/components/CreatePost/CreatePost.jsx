@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from "react"
 import axios from "axios"
 import {
+  createNewPost
+} from "../../services/parentServices"
+import {
     BiImageAdd,
     AiOutlineFileGif,
     BiPoll,
@@ -77,7 +80,7 @@ function CreatePost()
       setNewPostTextContent(prevState => prevState+emojiObject.emoji)
     }
 
-    const createNewPost = async () => {
+    const createNewPostFn = async () => {
         if(userLoggedIn)
         {   
             if(postCharCount<0||postCharCount===280)
@@ -87,16 +90,7 @@ function CreatePost()
             else
             {
                 //Add this post to feed
-                let updatedDataResponse = await axios.post(
-                    "https://socioztron-server.vercel.app/api/userpost",
-                    {
-                      newPostTextContent,
-                      selectedFileUrl
-                    },
-                    {
-                      headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-                    }
-                )
+                let updatedDataResponse = await createNewPost({ newPostTextContent,selectedFileUrl })
 
                 if(updatedDataResponse.data.status==="ok")
                 {
@@ -224,7 +218,7 @@ function CreatePost()
                     (
                         <button 
                             className="solid-success-btn"
-                            onClick={()=>createNewPost()}
+                            onClick={()=>createNewPostFn()}
                         >
                             Post
                         </button>)

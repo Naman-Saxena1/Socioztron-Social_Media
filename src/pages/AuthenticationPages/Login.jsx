@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import jwt_decode from "jwt-decode"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
+import { loginUser } from "../../services/parentServices"
 import { useDispatch } from "react-redux"
 import {
     updateUserDetails
@@ -40,16 +40,46 @@ function Login()
       }
     }
 
-    function loginUser(event)
+    function loginUserHandler(event)
     {
         event.preventDefault();
-        axios.post(
-            "https://socioztron-server.vercel.app/api/login",
+
+        loginUser({userEmail,userPassword})
+        .then(res => {
+            if(res.data.user)
             {
-                userEmail,
-                userPassword
+                localStorage.setItem('socioztron-user-token',res.data.user)
+                let loggedInUserDetails = jwt_decode(res.data.user)
+                let updatedUserDetails = {
+                    loggedInUserId: loggedInUserDetails._id,
+                    loggedInUserName: loggedInUserDetails.name, 
+                    loggedInUserEmail: loggedInUserDetails.email, 
+                    loggedInUserProfile: loggedInUserDetails.userProfilePic,
+                    loggedInUserFollowing: res.data.userDetails.following
+                }
+            
+                dispatch(updateUserDetails(updatedUserDetails))
+                showToast("success","Logged in successfully")
+                setUserLoggedIn(true)
+                navigate('/')
             }
-        )
+            else
+            {
+                throw new Error("Error in user login")
+            }
+        })
+        .catch(err=>{
+            showToast("error","Error logging in user. Please try again")
+        })
+    }
+
+    function loginGuestUser(event, guestUserNumber)
+    {
+        event.preventDefault();
+        let guestUserEmail = guestUserNumber===1?'newuser1001@gmail.com':'johnwick2@gmail.com';
+        let guestUserPassword = 'Zxcv123*';
+
+        loginUser({userEmail: guestUserEmail,userPassword: guestUserPassword})
         .then(res => {
             if(res.data.user)
             {
@@ -81,7 +111,7 @@ function Login()
     return (
         <div className="user-auth-page">
         <div className="user-auth-content-container">
-            <form onSubmit={loginUser} className="user-auth-form">
+            <form onSubmit={loginUserHandler} className="user-auth-form">
                 <h2>Login</h2>
                 
                 <div className="user-auth-input-container">
@@ -130,6 +160,11 @@ function Login()
                 </div>
 
                 <button type="submit" className="solid-success-btn form-user-auth-submit-btn">Login</button>
+                
+                <div className="guest-user-auth-container">
+                    <button className="solid-primary-btn" onClick={(event)=> {loginGuestUser(event,1)}}>Guest User 1</button>
+                    <button className="solid-primary-btn" onClick={(event)=> {loginGuestUser(event,2)}}>Guest User 2</button>
+                </div>
 
                 <div className="new-user-container">
                     <Link to="/signup" className="links-with-blue-underline" id="new-user-link">

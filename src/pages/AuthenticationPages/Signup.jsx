@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./UserAuth.css"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
+import { signupUser } from "../../services/parentServices"
 import { useToast } from "../../context/index"
 import {
     AiOutlineEye,
@@ -32,17 +32,14 @@ function Signup()
       }
     }
 
-    function signupUser(event)
+    function signupUserHandler(event)
     {
         event.preventDefault();
-        axios.post(
-            "https://socioztron-server.vercel.app/api/signup",
-            {
-                newUserName: `${newUserName}`,
-                newUserEmail: `${newUserEmail}`,
-                newUserPassword : `${newUserPassword}`
-            }
-        )
+        signupUser({
+            newUserName: `${newUserName}`,
+            newUserEmail: `${newUserEmail}`,
+            newUserPassword : `${newUserPassword}`
+        })
         .then(res => {
             if(res.data.status==='ok')
             {
@@ -63,7 +60,7 @@ function Signup()
     return (
         <div className="user-auth-page">
         <div className="user-auth-content-container">
-            <form onSubmit={signupUser} className="user-auth-form">
+            <form onSubmit={signupUserHandler} className="user-auth-form">
                 <h2>Signup</h2>
                 
                 <div className="user-auth-input-container">

@@ -1,4 +1,8 @@
-import axios from "axios";
+import {
+    fetchUpdatedPosts,
+    deletePost,
+    bookmarkPost
+} from "../../services/parentServices";
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -125,13 +129,7 @@ function UserPost({userPostDetails})
 
     const handlePostLikeStatus = async () => {
         setPostLikeStatus(prevState => !prevState)
-        let updatedUserAndPostDetails = await axios.patch(
-            `https://socioztron-server.vercel.app/api/userpost/updatelikes/${userPostDetails._id}`,
-            {},
-            {
-                headers: {'x-access-token': localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let updatedUserAndPostDetails = await fetchUpdatedPosts({postId: userPostDetails._id})
         
         if(updatedUserAndPostDetails.data.status==="ok")
         {
@@ -141,12 +139,7 @@ function UserPost({userPostDetails})
     }
 
     const deleteUserPost = async() => {
-        let deletePostResponse = await axios.delete(
-            `https://socioztron-server.vercel.app/api/userpost/delete/${_id}`,
-            {
-                headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let deletePostResponse = await deletePost(_id)
 
         if(deletePostResponse.data.status==="ok")
         {
@@ -155,13 +148,7 @@ function UserPost({userPostDetails})
     }
 
     const bookmarkUserPostHandler = async() => {
-        let bookmarkPostResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/userpost/bookmark/${_id}`,
-            {},
-            {
-                headers : {"x-access-token":localStorage.getItem("socioztron-user-token")}
-            }
-        )
+        let bookmarkPostResponse = await bookmarkPost(_id)
 
         if(bookmarkPostResponse.data.status==="ok")
         {

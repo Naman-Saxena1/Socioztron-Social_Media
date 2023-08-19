@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import axios from "axios"
+import {
+    fetchUserDetails,
+    fetchUpdatedHomeFeed,
+    updateUserFollowing
+} from "../../services/parentServices"
 import Lottie from "react-lottie"
 import { 
     Sidebar,
@@ -68,20 +72,19 @@ function UserProfilePage()
       window.scrollTo(0, 0);
     }, [pathname]);
 
-    useEffect(()=>{
+    useEffect(()=>{    
+        if(userLoggedIn)
+        {
+            (async()=>{
+                let allUserDetails = await fetchUserDetails(profileUserEmail)
 
-        (async()=>{
-            let allUserDetails = await axios.get(
-                `https://socioztron-server.vercel.app/api/user/${profileUserEmail}`
-            )
+                if(allUserDetails.data.status==="ok")
+                {
+                    dispatch(updateCurrentProfile(allUserDetails.data.allUserDetails))
+                }
 
-            if(allUserDetails.data.status==="ok")
-            {
-                dispatch(updateCurrentProfile(allUserDetails.data.allUserDetails))
-            }
-
-        })()
-
+            })()
+        }
     },[state])
     
     useEffect(()=>{
@@ -95,24 +98,14 @@ function UserProfilePage()
         if(homeFeed.length===0)
         {
             (async()=>{
-                let updatedHomeFeed = await axios.get(
-                    "https://socioztron-server.vercel.app/api/userpost"
-                )
+                let updatedHomeFeed = await fetchUpdatedHomeFeed()
                 dispatch(updateHomeFeed(updatedHomeFeed.data.homefeed))
             })()
         }
     },[])
 
-    const updateUserFollowing = async() => {
-        let updatedUserFollowingListResponse = await axios.patch(
-            `https://socioztron-server.vercel.app/api/user/following`,
-            {
-                profileUserEmail
-            },
-            {
-                headers: {'x-access-token':localStorage.getItem("socioztron-user-token")}
-            }
-        )
+    const updateUserFollowingFn = async() => {
+        let updatedUserFollowingListResponse = await updateUserFollowing({profileUserEmail})
 
         if(updatedUserFollowingListResponse.data.status==="ok")
         {
@@ -169,7 +162,7 @@ function UserProfilePage()
                                             <button 
                                                 className={isUserFollowed?`follow-user-profile-btn`:`follow-user-profile-btn follow-user-profile-btn-active`}
                                                 onClick={()=>{
-                                                    updateUserFollowing()
+                                                    updateUserFollowingFn()
                                                 }}
                                             >
                                                 {isUserFollowed?"Following":"Follow"}
