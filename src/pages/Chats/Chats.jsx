@@ -25,7 +25,7 @@ import loginLottie from "../../assets/lottie/authentication.json"
 import io from "socket.io-client"
 import './Chats.css'
 
-const ENDPOINT = "http://16.171.172.213:80";
+const ENDPOINT = "https://socioztron.co.in";
 var socket, currentlyOpenedChatCompare, hasUserJoined= false;
 
 function Chats()
